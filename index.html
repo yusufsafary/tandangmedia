@@ -3,141 +3,135 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TANDANG — Truth Market</title>
+<title>TANDANG — The Market for Truth</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet"/>
 
 <style>
 :root{
 --bg:#050505;
---glass:rgba(255,255,255,0.05);
---border:rgba(255,255,255,0.1);
+--glass:rgba(255,255,255,0.04);
+--border:rgba(255,255,255,0.08);
 --text:#f5f5f7;
 --muted:#8a8a93;
 --accent:#e8c547;
 }
-
-*{box-sizing:border-box}
 
 body{
 margin:0;
 background:radial-gradient(circle at top,#111,#000);
 color:var(--text);
 font-family:'Inter';
-overflow-x:hidden;
 }
 
-/* cinematic glow */
-body:before{
-content:"";
-position:fixed;
-top:-20%;left:-20%;
-width:140%;height:140%;
-background:radial-gradient(circle,rgba(232,197,71,0.08),transparent 60%);
-animation:glow 8s linear infinite;
-z-index:-1;
-}
-@keyframes glow{
-0%{transform:rotate(0deg)}
-100%{transform:rotate(360deg)}
-}
-
+/* HEADER */
 header{
-position:sticky;top:0;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(20px);
+position:sticky;
+top:0;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(16px);
 border-bottom:1px solid var(--border);
 z-index:10;
 }
 
 .wrap{
-max-width:1300px;margin:auto;padding:18px 24px;
-display:flex;justify-content:space-between;align-items:center;
+max-width:1300px;
+margin:auto;
+padding:18px 24px;
+display:flex;
+justify-content:space-between;
 }
 
 .logo{
 font-family:'Playfair Display';
-font-size:26px;font-weight:900;
-letter-spacing:1px;
+font-size:24px;
+font-weight:900;
 }
-.logo span{color:var(--accent)}
+.logo span{color:var(--accent);}
 
 .btn{
 background:linear-gradient(135deg,#e8c547,#f4e29a);
-border:none;padding:10px 18px;border-radius:12px;
-cursor:pointer;font-weight:600;
-transition:.3s;
+border:none;
+padding:8px 16px;
+border-radius:8px;
+cursor:pointer;
 }
-.btn:hover{transform:translateY(-2px)}
 
+/* HERO */
 .hero{
-max-width:1100px;margin:120px auto 80px;
-text-align:center;padding:0 24px;
-animation:fadeUp 1s ease;
+max-width:1200px;
+margin:80px auto;
+padding:0 24px;
 }
-
 .hero h1{
 font-family:'Playfair Display';
-font-size:68px;
-margin-bottom:10px;
+font-size:64px;
 }
+.hero p{color:var(--muted);}
 
-.hero p{color:var(--muted);margin-bottom:30px;font-size:18px}
-
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(30px)}
-to{opacity:1;transform:translateY(0)}
-}
-
+/* GRID */
 .grid{
-max-width:1300px;margin:auto;padding:0 24px;
-display:grid;grid-template-columns:2.2fr 1fr;gap:30px;
+max-width:1300px;
+margin:auto;
+padding:0 24px;
+display:grid;
+grid-template-columns:2.3fr 1fr;
+gap:30px;
 }
 
+/* CARD */
 .card{
 background:var(--glass);
 border:1px solid var(--border);
-border-radius:16px;padding:22px;margin-bottom:18px;
-backdrop-filter:blur(12px);
+border-radius:14px;
+padding:20px;
+margin-bottom:18px;
 transition:.3s;
 }
-.card:hover{
-transform:translateY(-6px) scale(1.01);
-border-color:rgba(232,197,71,0.3);
-}
+.card:hover{transform:translateY(-5px);}
 
-.story-title{font-family:'Playfair Display';font-size:22px;margin-bottom:4px}
-.meta{font-size:12px;color:var(--muted)}
-.price{color:var(--accent);margin-top:8px;font-family:'DM Mono'}
+/* STORY */
+.story-title{font-family:'Playfair Display';font-size:22px;}
+.meta{font-size:12px;color:var(--muted);}
+.price{color:var(--accent);margin-top:8px;font-family:'DM Mono';}
 
+/* INPUT */
 input,textarea{
-width:100%;margin-top:10px;padding:12px;
-background:rgba(255,255,255,0.04);
+width:100%;
+margin-top:8px;
+padding:12px;
+background:#000;
 border:1px solid var(--border);
-border-radius:10px;color:#fff;
+border-radius:8px;
+color:#fff;
 }
 
+/* SECTION */
 .section{
-max-width:1100px;margin:100px auto;text-align:center;padding:0 24px;
-animation:fadeUp 1s ease;
+max-width:1200px;
+margin:80px auto;
+padding:0 24px;
 }
+.section h2{font-family:'Playfair Display';}
+.small{color:var(--muted);margin-top:8px;}
 
-.small{color:var(--muted);margin-top:10px;line-height:1.6}
-
-.badge{
-display:inline-block;
-padding:6px 12px;
-border:1px solid var(--border);
-border-radius:999px;
-font-size:12px;
-margin-top:10px;
-color:var(--accent);
-}
-
+/* FOOTER */
 footer{
 border-top:1px solid var(--border);
-padding:40px 24px;margin-top:120px;text-align:center;color:var(--muted);
+padding:40px 24px;
+margin-top:100px;
 }
+
+.footer-grid{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+font-size:13px;
+color:var(--muted);
+}
+footer h4{color:#fff;margin-bottom:10px;}
 </style>
 </head>
 
@@ -146,123 +140,166 @@ padding:40px 24px;margin-top:120px;text-align:center;color:var(--muted);
 <header>
 <div class="wrap">
 <div class="logo">TANDANG<span>.</span></div>
-<div>
-<a href="https://orynth.dev/projects/yatzicha" target="_blank"><span class="badge">Listed on Orynth</span></a>
-</div>
+<a href="https://x.com/tandangnews" target="_blank"><button class="btn">X</button></a>
 </div>
 </header>
 
 <div class="hero">
-<h1>Truth has a price.</h1>
-<p>Not likes. Not shares. Only value.</p>
-<button class="btn" onclick="scrollToApp()">Enter Market</button>
+<h1>The Market for Truth.</h1>
+<p>Decentralized journalism where narratives compete economically.</p>
 </div>
 
-<div class="grid" id="app">
+<div class="grid">
 
+<!-- FEED -->
 <div>
 <div id="feed"></div>
 
 <div class="card">
 <h3>Submit Story</h3>
 <input id="title" placeholder="Headline"/>
-<textarea id="content" placeholder="Write your narrative..."></textarea>
+<textarea id="content"></textarea>
 <button class="btn" onclick="submitStory()">Publish</button>
 </div>
 </div>
 
+<!-- SIDEBAR -->
 <div>
-<div class="card"><h3>Market</h3><div id="market">$120</div></div>
+<div class="card"><h3>AI Market</h3><div id="market">$120</div></div>
 <div class="card"><h3>Trending</h3><div id="trending"></div></div>
-<div class="card"><h3>Top Journalists</h3><div id="journalistsList"></div></div>
+<div class="card"><h3>Top Journalists</h3><div id="journalists"></div></div>
 </div>
 
 </div>
 
+<!-- WHITEPAPER -->
+<div class="section">
+<h2>Whitepaper</h2>
+<p class="small">
+TANDANG introduces a decentralized journalism protocol where information is priced rather than controlled.
+Each story becomes an economic asset influenced by attention, credibility, and participation.
+</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+<h2>How It Works</h2>
+<p class="small">
+1. Submit a story<br/>
+2. AI evaluates content<br/>
+3. Market assigns value<br/>
+4. Community amplifies truth
+</p>
+</div>
+
+<!-- TEAM -->
+<div class="section">
+<h2>Team</h2>
+<p class="small">
+Aria Nakamoto — Core Protocol<br/>
+Leo Zhang — AI Systems<br/>
+Mika Tanaka — Media Strategy<br/>
+Ravi Prasetya — Web3 Research
+</p>
+</div>
+
+<!-- PARTNERS -->
 <div class="section">
 <h2>Media Partnerships</h2>
-<p class="small">CoinDesk • Decrypt • Blocktempo • Web3 Times</p>
+<p class="small">
+CoinDesk • Decrypt • Blocktempo • Web3 Times
+</p>
 </div>
 
+<!-- PRIVACY -->
 <div class="section">
-<h2>Launch Logic</h2>
-<p class="small">Controversy + Market + Truth = Viral Loop</p>
+<h2>Privacy Policy</h2>
+<p class="small">
+We do not collect personal identity. Wallet-based identity only. No data sold.
+</p>
 </div>
 
+<!-- LEGAL -->
 <div class="section">
-<h2>Disclaimer</h2>
-<p class="small">Experimental protocol. Not financial advice.</p>
+<h2>Legal</h2>
+<p class="small">
+TANDANG is a decentralized platform. Content responsibility lies with users.
+Not financial advice.
+</p>
 </div>
 
 <footer>
-<p>TANDANG — Truth as a financial primitive</p>
+<div class="footer-grid">
+
+<div>
+<h4>TANDANG</h4>
+<p>Decentralized journalism protocol.</p>
+</div>
+
+<div>
+<h4>Product</h4>
+<p>Feed<br/>AI Engine<br/>Trending</p>
+</div>
+
+<div>
+<h4>Company</h4>
+<p>About<br/>Team<br/>Careers</p>
+</div>
+
+<div>
+<h4>Legal</h4>
+<p>Privacy<br/>Terms<br/>Policy</p>
+</div>
+
+</div>
 </footer>
 
 <script>
+let stories=JSON.parse(localStorage.getItem("stories"))||[
+{t:"AI Market Manipulation Exposed",c:"Bias revealed",a:"aria",p:320},
+{t:"Onchain Identity Debate",c:"Privacy vs accountability",a:"leo",p:210}
+];
 
-let user = localStorage.getItem("user") || "anon_"+Date.now();
-localStorage.setItem("user", user);
-
-let stories = JSON.parse(localStorage.getItem("stories")) || [];
-let journalists = JSON.parse(localStorage.getItem("journalists")) || {};
-
-function escapeHTML(str){
-return str.replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
-}
+let journalists={"aria":80,"leo":60};
 
 function score(text){
-let base = text.length/5;
-let bonus = (text.includes("truth")||text.includes("data")) ? 20 : 0;
-return Math.min(100, base+bonus);
+return Math.min(100,text.length/6+Math.random()*10);
 }
 
 function submitStory(){
-const t = title.value;
-const c = content.value;
-if(!t || !c) return alert("Fill all fields");
+const t=title.value;
+const c=content.value;
+const a="user_"+Math.floor(Math.random()*999);
 
-const s = score(c);
-const p = Math.floor(100 + s*2);
+const s=score(c);
+const p=Math.floor(120+s*2);
 
-stories.unshift({t,c,a:user,p});
-journalists[user] = (journalists[user]||0)+s;
+stories.unshift({t,c,a,p});
+journalists[a]=(journalists[a]||0)+s;
 
-localStorage.setItem("stories", JSON.stringify(stories));
-localStorage.setItem("journalists", JSON.stringify(journalists));
-
+localStorage.setItem("stories",JSON.stringify(stories));
 render();
 }
 
 function render(){
-if(stories.length===0){
-feed.innerHTML = "<div class='card'>No stories yet</div>";
-} else {
-feed.innerHTML = stories.map(x=>`
+feed.innerHTML=stories.map(x=>`
 <div class="card">
-<div class="story-title">${escapeHTML(x.t)}</div>
+<div class="story-title">${x.t}</div>
 <div class="meta">${x.a}</div>
-<p>${escapeHTML(x.c)}</p>
+<p>${x.c}</p>
 <div class="price">$${x.p}</div>
-</div>`).join("");
-}
+</div>
+`).join("");
 
-trending.innerHTML = stories.slice(0,5).map(x=>escapeHTML(x.t)).join("<br>");
-
-journalistsList.innerHTML = Object.entries(journalists)
-.sort((a,b)=>b[1]-a[1])
-.map(x=>x[0]).join("<br>");
-}
-
-setInterval(()=>{
-market.innerText = "$"+(100+Math.random()*40).toFixed(2);
-},2000);
-
-function scrollToApp(){
-document.getElementById('app').scrollIntoView({behavior:'smooth'});
+trending.innerHTML=stories.slice(0,5).map(x=>x.t).join("<br/>");
+journalists.innerHTML=Object.entries(journalists).map(x=>x[0]).join("<br/>");
 }
 
 render();
 
+setInterval(()=>{
+market.innerText="$"+(100+Math.random()*40).toFixed(2);
+},2000);
 </script>
 
 </body>
