@@ -3,91 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TandangNews — Citizen Journalism Onchain</title>
+<title>TandangNews — Onchain Citizen Journalism</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 :root {
-  --bg: #0a0a0b;
-  --surface: #111113;
-  --surface2: #18181c;
-  --border: #2a2a30;
-  --border2: #1e1e24;
-  --text: #e8e8ec;
-  --muted: #888894;
-  --accent: #e8c547;
-  --accent2: #f0d870;
-  --sol: #9945FF;
-  --base: #0052FF;
-  --green: #22c55e;
-  --orange: #f97316;
-  --radius: 6px;
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-mono: 'DM Mono', monospace;
-  --font-body: 'DM Sans', sans-serif;
+  --bg: #0a0a0b; --surface: #111113; --surface2: #18181c; --border: #2a2a30; --border2: #1e1e24;
+  --text: #e8e8ec; --muted: #888894; --accent: #e8c547; --accent2: #f0d870; --sol: #9945FF;
+  --base: #0052FF; --green: #22c55e; --orange: #f97316; --radius: 6px;
+  --font-display: 'Playfair Display', Georgia, serif; --font-mono: 'DM Mono', monospace; --font-body: 'DM Sans', sans-serif;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.6;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-/* Header */
-header {
-  position: sticky; top: 0; z-index:100;
-  background: rgba(10,10,11,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border2);
-}
-.header-inner { max-width:1100px; margin:0 auto; padding:0 16px; height:56px; display:flex; align-items:center; justify-content:space-between; }
-.logo { display:flex; align-items:center; gap:8px; text-decoration:none; }
-.logo-mark { width:32px;height:32px;background:var(--accent);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:16px;color:#000;letter-spacing:-1px; }
-.logo-text { font-family:var(--font-display); font-weight:900; font-size:18px; color:var(--text); letter-spacing:-0.5px; }
-.logo-text span { color: var(--accent); }
-.header-actions { display:flex; gap:8px; }
-.btn { display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border-radius:var(--radius); font-family:var(--font-body); font-size:13px; font-weight:500; cursor:pointer; border:none; transition: all 0.2s; }
-.btn-primary { background: var(--accent); color:#000; }
-.btn-primary:hover { background: var(--accent2); transform:translateY(-1px); }
-.btn-ghost { background:transparent; color:var(--muted); border:1px solid var(--border); }
-.btn-ghost:hover { color: var(--text); border-color: var(--muted); }
-/* Hero */
-.hero { padding:32px 16px 24px; border-bottom:1px solid var(--border2); margin-bottom:24px; text-align:center; }
-.hero-tag { font-family:var(--font-mono); font-size:10px; color:var(--accent); text-transform:uppercase; margin-bottom:12px; display:inline-block; letter-spacing:2px; }
-.hero h1 { font-family:var(--font-display); font-size:clamp(28px,5vw,44px); font-weight:900; line-height:1.1; margin-bottom:12px; }
-.hero h1 em { color:var(--accent); font-style:italic; }
-.hero-sub { font-size:14px; color:var(--muted); max-width:600px; margin:0 auto; line-height:1.5; }
-/* Grid */
-.content-grid { display:grid; grid-template-columns:1fr; gap:1px; background:var(--border2); border-radius:8px; overflow:hidden; margin-bottom:24px; }
-@media (min-width:700px){ .content-grid{ grid-template-columns:1fr 1fr; } }
-/* Article Card */
-.article-card { background:var(--surface); padding:18px 20px; cursor:pointer; transition: background 0.15s; }
-.article-card:hover{ background:var(--surface2); }
-.card-title{ font-family:var(--font-display); font-weight:700; margin-bottom:6px; font-size:16px; }
-.card-summary{ font-size:13px; color:var(--muted); line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-/* Badge & proof */
-.onchain-proof{ background: rgba(153,69,255,0.06); border:1px solid rgba(153,69,255,0.2); border-radius:var(--radius); padding:12px; margin-top:12px; }
-.proof-title{ font-family:var(--font-mono); font-size:10px; color:#9945FF; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
-.proof-row{ display:flex; gap:6px; font-size:11px; }
-.proof-key{ color:var(--muted); font-family:var(--font-mono); min-width:60px; }
-.proof-val{ color:var(--text); font-family:var(--font-mono); word-break:break-all; }
-/* Footer sections */
-section { margin:24px 0; }
-section h2{ font-family:var(--font-display); font-size:20px; margin-bottom:12px; color:var(--accent); }
-/* FAB */
-.fab{ display:none; position:fixed; bottom:20px; right:20px; width:52px; height:52px; border-radius:50%; background:var(--accent); color:#000; border:none; font-size:22px; cursor:pointer; align-items:center; justify-content:center; }
-@media(max-width:600px){ .fab{ display:flex; } }
-/* Ticker */
-.ticker-wrap{ background:var(--accent); overflow:hidden; height:28px; display:flex; align-items:center; margin-bottom:16px; }
-.ticker-label{ background:#000; color:var(--accent); font-family:var(--font-mono); font-size:10px; font-weight:500; padding:0 10px; display:flex; align-items:center; flex-shrink:0; letter-spacing:1px; text-transform:uppercase; }
-.ticker-track{ display:flex; animation: ticker 30s linear infinite; }
-.ticker-item{ font-family:var(--font-mono); font-size:11px; color:#000; font-weight:500; padding:0 24px; white-space:nowrap; border-right:1px solid rgba(0,0,0,0.2); }
-@keyframes ticker{ from { transform:translateX(0); } to { transform:translateX(-50%); } }
-/* Responsive text */
-@media(max-width:600px){ .hero h1{ font-size:26px; } .content-grid{ gap:12px; } }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;min-height:100vh;overflow-x:hidden;}
+header{position:sticky;top:0;z-index:100;background:rgba(10,10,11,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 16px;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
+.logo-mark{width:32px;height:32px;background:var(--accent);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:16px;color:#000;letter-spacing:-1px;}
+.logo-text{font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--text);letter-spacing:-0.5px;}
+.logo-text span{color:var(--accent);}
+.header-actions{display:flex;gap:8px;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--radius);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all 0.2s;}
+.btn-primary{background:var(--accent);color:#000;}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
+.btn-ghost:hover{color:var(--text);border-color:var(--muted);}
+.hero{padding:32px 16px 24px;border-bottom:1px solid var(--border2);margin-bottom:24px;text-align:center;}
+.hero-tag{font-family:var(--font-mono);font-size:10px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;display:inline-block;letter-spacing:2px;}
+.hero h1{font-family:var(--font-display);font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.1;margin-bottom:12px;}
+.hero h1 em{color:var(--accent);font-style:italic;}
+.hero-sub{font-size:14px;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.5;}
+nav{display:flex;justify-content:center;gap:18px;margin-bottom:24px;flex-wrap:wrap;}
+nav a{color:var(--text);text-decoration:none;font-family:var(--font-mono);font-size:12px;padding:6px 12px;border-radius:var(--radius);transition:all 0.2s;}
+nav a:hover{background:var(--surface2);color:var(--accent);}
+.content-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border2);border-radius:8px;overflow:hidden;margin-bottom:24px;}
+@media(min-width:700px){.content-grid{grid-template-columns:1fr 1fr;}}
+.article-card{background:var(--surface);padding:18px 20px;cursor:pointer;transition:background 0.15s;}
+.article-card:hover{background:var(--surface2);}
+.card-title{font-family:var(--font-display);font-weight:700;margin-bottom:6px;font-size:16px;}
+.card-summary{font-size:13px;color:var(--muted);line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.onchain-proof{background: rgba(153,69,255,0.06); border:1px solid rgba(153,69,255,0.2); border-radius:var(--radius); padding:12px; margin-top:12px;}
+.proof-title{font-family:var(--font-mono);font-size:10px;color:#9945FF;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.proof-row{display:flex;gap:6px;font-size:11px;}
+.proof-key{color:var(--muted);font-family:var(--font-mono);min-width:60px;}
+.proof-val{color:var(--text);font-family:var(--font-mono);word-break:break-all;}
+section{margin:24px 16px;}
+section h2{font-family:var(--font-display);font-size:20px;margin-bottom:12px;color:var(--accent);}
+.fab{display:none;position:fixed;bottom:20px;right:20px;width:52px;height:52px;border-radius:50%;background:var(--accent);color:#000;border:none;font-size:22px;cursor:pointer;align-items:center;justify-content:center;}
+@media(max-width:600px){.fab{display:flex;}}
+.ticker-wrap{background:var(--accent);overflow:hidden;height:28px;display:flex;align-items:center;margin-bottom:16px;}
+.ticker-label{background:#000;color:var(--accent);font-family:var(--font-mono);font-size:10px;font-weight:500;padding:0 10px;display:flex;align-items:center;flex-shrink:0;letter-spacing:1px;text-transform:uppercase;}
+.ticker-track{display:flex;animation:ticker 30s linear infinite;}
+.ticker-item{font-family:var(--font-mono);font-size:11px;color:#000;font-weight:500;padding:0 24px;white-space:nowrap;border-right:1px solid rgba(0,0,0,0.2);}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.price-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:12px;margin:16px 0;}
+.price-box h3{font-family:var(--font-mono);font-size:13px;color:var(--accent);margin-bottom:6px;}
+.price-row{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:12px;color:var(--text);margin-bottom:4px;}
+@media(max-width:600px){.hero h1{font-size:26px;}.content-grid{gap:12px;}}
 </style>
 </head>
 <body>
@@ -108,6 +79,13 @@ section h2{ font-family:var(--font-display); font-size:20px; margin-bottom:12px;
   <div class="hero-sub">Your go-to platform for decentralized citizen journalism — all stories verified on-chain with AI analysis.</div>
 </div>
 
+<nav>
+  <a href="#about">About</a>
+  <a href="#howto">How To</a>
+  <a href="#team">Team</a>
+  <a href="#privacy">Privacy</a>
+</nav>
+
 <div class="ticker-wrap">
   <div class="ticker-label">LIVE</div>
   <div class="ticker-track">
@@ -115,12 +93,12 @@ section h2{ font-family:var(--font-display); font-size:20px; margin-bottom:12px;
     <div class="ticker-item">Bidding simulation active 🪙</div>
     <div class="ticker-item">Premium AI analyzing prices 🧠</div>
     <div class="ticker-item">X journalists watching this story 🔴</div>
-    <div class="ticker-item">Bidding simulation active 🪙</div>
   </div>
 </div>
 
 <main>
   <div class="content-grid">
+    <!-- Fake news cards -->
     <div class="article-card">
       <div class="card-title">Solana NFT boom sparks new journalism tools</div>
       <div class="card-summary">Developers leverage on-chain verification for transparent news reporting in Web3 communities.</div>
@@ -132,13 +110,49 @@ section h2{ font-family:var(--font-display); font-size:20px; margin-bottom:12px;
     </div>
     <div class="article-card">
       <div class="card-title">Ethereum DAO funding experiments</div>
-      <div class="card-summary">DAOs are now financing independent reporters with transparent smart contracts, enabling trustless contributions.</div>
+      <div class="card-summary">DAOs are financing independent reporters with smart contracts, enabling trustless contributions.</div>
       <div class="onchain-proof">
         <div class="proof-title">Onchain Proof</div>
         <div class="proof-row"><div class="proof-key">Hash:</div><div class="proof-val hash">0xFEDCBA654321</div></div>
         <div class="proof-row"><div class="proof-key">Tx:</div><div class="proof-val tx">0xTX123456789</div></div>
       </div>
     </div>
+    <div class="article-card">
+      <div class="card-title">Polygon integrates news verification</div>
+      <div class="card-summary">Polygon-based news apps enable on-chain verification to prevent fake news in crypto communities.</div>
+      <div class="onchain-proof">
+        <div class="proof-title">Onchain Proof</div>
+        <div class="proof-row"><div class="proof-key">Hash:</div><div class="proof-val hash">0x123ABC456DEF</div></div>
+        <div class="proof-row"><div class="proof-key">Tx:</div><div class="proof-val tx">0xTX321654987</div></div>
+      </div>
+    </div>
+    <div class="article-card">
+      <div class="card-title">DAO-backed investigative journalism rises</div>
+      <div class="card-summary">Community-funded DAOs support investigative reporters with fully transparent contributions.</div>
+      <div class="onchain-proof">
+        <div class="proof-title">Onchain Proof</div>
+        <div class="proof-row"><div class="proof-key">Hash:</div><div class="proof-val hash">0x789DEF123ABC</div></div>
+        <div class="proof-row"><div class="proof-key">Tx:</div><div class="proof-val tx">0xTX654987321</div></div>
+      </div>
+    </div>
+    <div class="article-card">
+      <div class="card-title">AI tools price news coverage</div>
+      <div class="card-summary">Premium AI tools analyze story impact and suggest pricing for Web3 news contributions.</div>
+      <div class="onchain-proof">
+        <div class="proof-title">Onchain Proof</div>
+        <div class="proof-row"><div class="proof-key">Hash:</div><div class="proof-val hash">0xAAA111BBB222</div></div>
+        <div class="proof-row"><div class="proof-key">Tx:</div><div class="proof-val tx">0xTX111222333</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Premium AI price breakdown -->
+  <div class="price-box">
+    <h3>Premium AI Price Breakdown 🧠</h3>
+    <div class="price-row"><span>Story Impact Score:</span><span>87/100</span></div>
+    <div class="price-row"><span>Estimated Token Value:</span><span>0.024 ETH</span></div>
+    <div class="price-row"><span>Bidding Simulation:</span><span>0.020 - 0.030 ETH</span></div>
+    <div class="price-row"><span>Community Demand:</span><span>High 🔥</span></div>
   </div>
 
   <section id="about">
@@ -166,6 +180,7 @@ section h2{ font-family:var(--font-display); font-size:20px; margin-bottom:12px;
       <img src="https://orynth.dev/api/badge/journalism-onchain?theme=light&style=default" alt="Featured on Orynth" width="260" height="80"/>
     </a>
   </div>
+
 </main>
 
 <button class="fab" onclick="alert('Submit a story!')">✎</button>
