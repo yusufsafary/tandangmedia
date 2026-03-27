@@ -24,15 +24,20 @@ color:var(--text);
 font-family:'Inter';
 }
 
-/* PROTOTYPE BANNER */
+/* BANNER + ROADMAP */
 .banner{
 width:100%;
 background:linear-gradient(90deg,#e8c547,#f4e29a);
 color:#000;
-text-align:center;
-padding:10px;
-font-size:13px;
+padding:12px 16px;
+font-size:12px;
 font-weight:500;
+line-height:1.6;
+}
+.banner .roadmap{
+margin-top:6px;
+font-size:11px;
+opacity:.9;
 }
 
 /* HEADER */
@@ -101,12 +106,10 @@ transition:.3s;
 }
 .card:hover{transform:translateY(-5px);}
 
-/* STORY */
 .story-title{font-family:'Playfair Display';font-size:22px;}
 .meta{font-size:12px;color:var(--muted);}
 .price{color:var(--accent);margin-top:8px;font-family:'DM Mono';}
 
-/* INPUT */
 input,textarea{
 width:100%;
 margin-top:8px;
@@ -117,7 +120,6 @@ border-radius:8px;
 color:#fff;
 }
 
-/* SECTION */
 .section{
 max-width:1200px;
 margin:80px auto;
@@ -126,7 +128,6 @@ padding:0 24px;
 .section h2{font-family:'Playfair Display';}
 .small{color:var(--muted);margin-top:8px;line-height:1.6;}
 
-/* FOOTER */
 footer{
 border-top:1px solid var(--border);
 padding:40px 24px;
@@ -157,9 +158,16 @@ footer h4{color:#fff;margin-bottom:10px;}
 </div>
 </header>
 
-<!-- PROTOTYPE BANNER -->
+<!-- BANNER -->
 <div class="banner">
-⚠️ This is a prototype. Data, pricing, and AI scoring are experimental and not reflective of real-world accuracy.
+<strong>⚠️ Prototype Stage</strong> — Experimental AI scoring & simulated market. Not real financial system.
+
+<div class="roadmap">
+Q2 2026 — Prototype Launch (UI, local AI scoring, simulated market)<br/>
+Q3 2026 — Beta Release (wallet connect, onchain identity, real-time signals)<br/>
+Q4 2026 — Network Expansion (token layer, credibility scoring, incentives)<br/>
+Dec 2026 — Public Protocol (open ecosystem, partnerships, full decentralization)
+</div>
 </div>
 
 <div class="hero">
