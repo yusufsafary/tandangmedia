@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TandangNews V2 — Onchain News Engine</title>
+<title>TandangNews — Onchain Journalism Protocol</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans&family=DM+Mono&display=swap" rel="stylesheet"/>
 <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
@@ -14,27 +14,17 @@
 --text:#e8e8ec;--muted:#888;--accent:#e8c547;
 font-family:'DM Sans';
 }
-
 body{margin:0;background:var(--bg);color:var(--text);}
 
-/* cinematic */
-body::before{
-content:'';
-position:fixed;inset:0;
-background: repeating-linear-gradient(
-to bottom,
-rgba(255,255,255,0.03) 0px,
-rgba(255,255,255,0.03) 1px,
-transparent 1px,
-transparent 3px
-);
-opacity:.4;
-}
-
-/* header */
+/* HEADER */
 header{border-bottom:1px solid var(--border);}
-.wrap{max-width:1100px;margin:auto;padding:14px;display:flex;justify-content:space-between;}
-.logo{font-family:'Playfair Display';font-weight:900;}
+.wrap{max-width:1100px;margin:auto;padding:14px;display:flex;justify-content:space-between;align-items:center;}
+
+.logo{
+display:flex;align-items:center;gap:8px;
+font-family:'Playfair Display';font-weight:900;
+}
+.logo svg{width:28px;height:28px;}
 .logo span{color:var(--accent);}
 
 button{background:var(--accent);border:none;padding:6px 10px;cursor:pointer;}
@@ -42,15 +32,11 @@ button{background:var(--accent);border:none;padding:6px 10px;cursor:pointer;}
 main{max-width:1100px;margin:auto;padding:20px;}
 
 .grid{display:grid;grid-template-columns:2fr 1fr;gap:20px;}
-.feed{display:flex;flex-direction:column;gap:12px;}
 
-.story{
-background:var(--card);
-padding:14px;
-border:1px solid var(--border);
-}
-
+.story{background:var(--card);padding:14px;border:1px solid var(--border);margin-bottom:10px;}
 .meta{font-size:12px;color:var(--muted);}
+.section{margin-top:50px;}
+.small{color:var(--muted);font-size:13px;}
 
 input,textarea{width:100%;margin-top:6px;padding:8px;background:#000;color:#fff;border:1px solid #333;}
 </style>
@@ -60,24 +46,32 @@ input,textarea{width:100%;margin-top:6px;padding:8px;background:#000;color:#fff;
 
 <header>
 <div class="wrap">
-<div class="logo">Tandang<span>News</span></div>
+
+<div class="logo">
+<svg viewBox="0 0 100 100">
+<rect width="100" height="100" fill="#e8c547"/>
+<text x="50" y="65" text-anchor="middle" font-size="55" fill="#000">T</text>
+</svg>
+Tandang<span>News</span>
+</div>
+
 <div>
-<a href="https://x.com/tandangnews" target="_blank"><button>X</button></a>
+<a href="https://x.com/tandangnews" target="_blank"><button>Follow X</button></a>
 <button onclick="connect()">Connect</button>
 </div>
+
 </div>
 </header>
 
 <main>
 
-<h1>Onchain News Engine</h1>
+<h1>Onchain Journalism Engine</h1>
 
 <div class="grid">
 
-<!-- LEFT FEED -->
+<!-- FEED -->
 <div>
-
-<div class="feed" id="feed"></div>
+<div id="feed"></div>
 
 <div class="story">
 <h3>Submit Story</h3>
@@ -85,34 +79,91 @@ input,textarea{width:100%;margin-top:6px;padding:8px;background:#000;color:#fff;
 <textarea id="content"></textarea>
 <button onclick="submit()">Publish</button>
 </div>
-
 </div>
 
-<!-- RIGHT PANEL -->
+<!-- SIDEBAR -->
 <div>
 
-<div class="story">
-<h3>Wallet</h3>
-<div id="wallet">Not connected</div>
-</div>
+<div class="story"><h3>Wallet</h3><div id="wallet">Not connected</div></div>
+<div class="story"><h3>AI Market</h3><div id="market">$120</div></div>
+<div class="story"><h3>Trending</h3><div id="trending"></div></div>
+<div class="story"><h3>Top Journalists</h3><div id="journalists"></div></div>
 
-<div class="story">
-<h3>AI Market</h3>
-<div id="market">$120</div>
-</div>
-
-<div class="story">
-<h3>Trending</h3>
-<div id="trending"></div>
-</div>
-
-<div class="story">
-<h3>Top Journalists</h3>
-<div id="journalists"></div>
 </div>
 
 </div>
 
+<!-- ABOUT -->
+<div class="section">
+<h2>About</h2>
+<p class="small">
+TandangNews transforms journalism into a market-driven system where truth is priced through participation and transparency.
+</p>
+</div>
+
+<!-- HOW -->
+<div class="section">
+<h2>How It Works</h2>
+<p class="small">
+Submit → Onchain proof → Community signals → AI pricing → Distribution.
+</p>
+</div>
+
+<!-- WHITEPAPER -->
+<div class="section">
+<h2>Whitepaper</h2>
+<p class="small">
+A decentralized protocol where information competes in an open market.
+Economic signals replace editorial authority, creating a censorship-resistant media layer.
+</p>
+</div>
+
+<!-- ROADMAP -->
+<div class="section">
+<h2>Roadmap 2026</h2>
+<p class="small">
+Mar — Testnet<br/>
+Apr — Wallet Integration<br/>
+May — AI Engine<br/>
+Jun — NFT Stories<br/>
+Jul — Public Launch<br/>
+Aug — Partnerships<br/>
+Sep — Mobile<br/>
+Oct — DAO<br/>
+Nov — Expansion<br/>
+Dec — Mainnet
+</p>
+</div>
+
+<!-- TEAM -->
+<div class="section">
+<h2>Team</h2>
+<p class="small">
+Core Dev • AI Engineer • Media Strategist • Web3 Research
+</p>
+</div>
+
+<!-- PARTNERS -->
+<div class="section">
+<h2>Media Partnerships</h2>
+<p class="small">
+CoinDesk • Decrypt • Blocktempo • Web3 Times • Onchain Daily
+</p>
+</div>
+
+<!-- ORYNTH BADGE -->
+<div class="section" style="text-align:center;">
+<a href="https://orynth.dev/projects/journalism-onchain" target="_blank">
+<img src="https://orynth.dev/api/badge/journalism-onchain" width="260"/>
+</a>
+</div>
+
+<!-- PRIVACY -->
+<div class="section">
+<h2>Privacy Policy</h2>
+<p class="small">
+Wallet-based identity. No personal data stored or sold.
+</p>
 </div>
 
 </main>
@@ -120,88 +171,52 @@ input,textarea{width:100%;margin-top:6px;padding:8px;background:#000;color:#fff;
 <script>
 const conn=new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'));
 let wallet=null;
-
 let stories=[];
 let journalists={};
 
-/* connect */
 async function connect(){
 wallet=window.solana;
 await wallet.connect();
 document.getElementById("wallet").innerText=wallet.publicKey;
 }
 
-/* AI scoring */
-function scoreStory(text){
-return Math.min(100, text.length/10 + Math.random()*30);
+function score(text){
+return Math.min(100,text.length/10+Math.random()*20);
 }
 
-/* publish */
 function submit(){
-const title=document.getElementById("title").value;
-const content=document.getElementById("content").value;
+const t=document.getElementById("title").value;
+const c=document.getElementById("content").value;
 
-const score=scoreStory(content);
-const price=(100+score*2).toFixed(2);
-const author="journalist_"+Math.floor(Math.random()*1000);
+const s=score(c);
+const p=(100+s*2).toFixed(2);
+const a="jour_"+Math.floor(Math.random()*1000);
 
-stories.unshift({
-title,content,score,price,author,time:Date.now()
-});
-
-/* update journalist */
-journalists[author]=(journalists[author]||0)+score;
+stories.unshift({t,c,s,p,a,time:Date.now()});
+journalists[a]=(journalists[a]||0)+s;
 
 render();
 }
 
-/* render */
 function render(){
-
-/* FEED */
-const feed=document.getElementById("feed");
-feed.innerHTML=stories
-.sort((a,b)=>b.price-a.price)
-.map(s=>`
+document.getElementById("feed").innerHTML=stories.map(x=>`
 <div class="story">
-<b>${s.title}</b><br/>
-<div class="meta">${s.author} • ${new Date(s.time).toLocaleTimeString()}</div>
-<p>${s.content}</p>
-
-💰 $${s.price} | 🧠 ${s.score.toFixed(1)}
-
-<br/>
-<button onclick="share('${s.title}')">Share X</button>
+<b>${x.t}</b>
+<div class="meta">${x.a}</div>
+<p>${x.c}</p>
+💰 $${x.p}
 </div>
 `).join("");
 
-/* TRENDING */
-const trending=document.getElementById("trending");
-trending.innerHTML=stories.slice(0,5)
-.map(s=>`🔥 ${s.title}`).join("<br/>");
+document.getElementById("trending").innerHTML=stories.slice(0,5).map(x=>x.t).join("<br/>");
 
-/* JOURNALIST */
-const j=document.getElementById("journalists");
-j.innerHTML=Object.entries(journalists)
-.sort((a,b)=>b[1]-a[1])
-.slice(0,5)
-.map(x=>`${x[0]} (${x[1].toFixed(1)})`)
-.join("<br/>");
-
+document.getElementById("journalists").innerHTML=
+Object.entries(journalists).sort((a,b)=>b[1]-a[1]).slice(0,5)
+.map(x=>x[0]+" ("+x[1].toFixed(1)+")").join("<br/>");
 }
 
-/* share */
-function share(title){
-const text=encodeURIComponent(`🧠 ${title}
-
-Truth has a market price.
-#Web3`);
-window.open(`https://twitter.com/intent/tweet?text=${text}`);
-}
-
-/* market pulse */
 setInterval(()=>{
-document.getElementById("market").innerText="$"+(100+Math.random()*50).toFixed(2);
+document.getElementById("market").innerText="$"+(100+Math.random()*40).toFixed(2);
 },2000);
 </script>
 
