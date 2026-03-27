@@ -24,6 +24,18 @@ color:var(--text);
 font-family:'Inter';
 }
 
+/* PROTOTYPE BANNER */
+.banner{
+width:100%;
+background:linear-gradient(90deg,#e8c547,#f4e29a);
+color:#000;
+text-align:center;
+padding:10px;
+font-size:13px;
+font-weight:500;
+}
+
+/* HEADER */
 header{
 position:sticky;
 top:0;
@@ -56,6 +68,7 @@ border-radius:8px;
 cursor:pointer;
 }
 
+/* HERO */
 .hero{
 max-width:1200px;
 margin:80px auto;
@@ -67,6 +80,7 @@ font-size:64px;
 }
 .hero p{color:var(--muted);}
 
+/* GRID */
 .grid{
 max-width:1300px;
 margin:auto;
@@ -76,6 +90,7 @@ grid-template-columns:2.3fr 1fr;
 gap:30px;
 }
 
+/* CARD */
 .card{
 background:var(--glass);
 border:1px solid var(--border);
@@ -86,10 +101,12 @@ transition:.3s;
 }
 .card:hover{transform:translateY(-5px);}
 
+/* STORY */
 .story-title{font-family:'Playfair Display';font-size:22px;}
 .meta{font-size:12px;color:var(--muted);}
 .price{color:var(--accent);margin-top:8px;font-family:'DM Mono';}
 
+/* INPUT */
 input,textarea{
 width:100%;
 margin-top:8px;
@@ -100,6 +117,7 @@ border-radius:8px;
 color:#fff;
 }
 
+/* SECTION */
 .section{
 max-width:1200px;
 margin:80px auto;
@@ -108,6 +126,7 @@ padding:0 24px;
 .section h2{font-family:'Playfair Display';}
 .small{color:var(--muted);margin-top:8px;line-height:1.6;}
 
+/* FOOTER */
 footer{
 border-top:1px solid var(--border);
 padding:40px 24px;
@@ -138,6 +157,11 @@ footer h4{color:#fff;margin-bottom:10px;}
 </div>
 </header>
 
+<!-- PROTOTYPE BANNER -->
+<div class="banner">
+⚠️ This is a prototype. Data, pricing, and AI scoring are experimental and not reflective of real-world accuracy.
+</div>
+
 <div class="hero">
 <h1>The Market for Truth.</h1>
 <p>
@@ -166,113 +190,56 @@ A decentralized journalism protocol where narratives compete economically, and t
 
 </div>
 
-<!-- WHITEPAPER -->
 <div class="section">
 <h2>Whitepaper</h2>
 <p class="small">
 TANDANG is a decentralized journalism protocol designed to realign incentives in media.
-Instead of relying on centralized editorial control, TANDANG introduces a market-driven system
-where information is priced dynamically based on credibility, engagement, and collective validation.
-
-Each story becomes a living asset:
-- It gains value when trusted and shared
-- It loses value when ignored or challenged
-
-The protocol leverages AI-assisted scoring, community participation, and economic feedback loops
-to surface higher-quality narratives over time.
-
-Goal: Transform journalism into a transparent, incentive-aligned ecosystem.
+Information is priced dynamically based on credibility, engagement, and participation.
 </p>
 </div>
 
-<!-- HOW IT WORKS -->
 <div class="section">
 <h2>How It Works</h2>
 <p class="small">
-1. Writers submit stories into the open network.<br/>
-2. AI evaluates structure, depth, and clarity of information.<br/>
-3. A market value is assigned based on perceived quality.<br/>
-4. Community interaction reinforces or weakens narratives.<br/>
-5. High-value stories rise, low-value narratives fade.<br/><br/>
-
-The system does not decide truth — it allows truth to emerge through transparent economic signals.
+1. Submit story<br/>
+2. AI evaluates<br/>
+3. Market assigns value<br/>
+4. Community amplifies truth
 </p>
 </div>
 
-<!-- HOW TO USE -->
 <div class="section">
 <h2>How To Use</h2>
 <p class="small">
-• Submit a story using the form above.<br/>
-• Observe how the AI assigns initial value.<br/>
-• Track trending narratives in real-time.<br/>
-• Build reputation as a journalist through consistency.<br/>
-• Analyze market behavior to identify signal vs noise.<br/><br/>
-
-Tip: High-quality, concise, and structured stories tend to perform better in the system.
+Submit stories, observe pricing, track trends, and build reputation as a journalist in the system.
 </p>
 </div>
 
-<!-- TEAM -->
 <div class="section">
 <h2>Team</h2>
 <p class="small">
-Aria Nakamoto — Core Protocol Architecture<br/>
-Focus: decentralized systems, token mechanics, trust models.<br/><br/>
-
-Leo Zhang — AI Systems<br/>
-Focus: scoring models, narrative evaluation, data pipelines.<br/><br/>
-
-Mika Tanaka — Media Strategy<br/>
-Focus: storytelling, distribution, cultural positioning.<br/><br/>
-
-Ravi Prasetya — Web3 Research<br/>
-Focus: governance, incentive design, ecosystem integration.
+Aria Nakamoto<br/>Leo Zhang<br/>Mika Tanaka<br/>Ravi Prasetya
 </p>
 </div>
 
-<!-- PARTNERS -->
 <div class="section">
 <h2>Media Partnerships</h2>
 <p class="small">
-CoinDesk — crypto journalism and insights<br/>
-Decrypt — Web3 media platform<br/>
-Blocktempo — Asian crypto news network<br/>
-Web3 Times — decentralized ecosystem coverage<br/><br/>
-
-Future integrations may include onchain publishing and oracle-based verification systems.
+CoinDesk • Decrypt • Blocktempo • Web3 Times
 </p>
 </div>
 
-<!-- PRIVACY -->
 <div class="section">
 <h2>Privacy Policy</h2>
 <p class="small">
-TANDANG does not collect personally identifiable information.<br/>
-Identity is wallet-based and pseudonymous by design.<br/><br/>
-
-We do not:
-- Sell user data<br/>
-- Track behavioral fingerprints<br/>
-- Store sensitive personal records<br/><br/>
-
-All interactions are designed to be minimal, transparent, and user-controlled.
+No personal data collection. Wallet-based identity only.
 </p>
 </div>
 
-<!-- LEGAL -->
 <div class="section">
 <h2>Legal</h2>
 <p class="small">
-TANDANG operates as a decentralized platform.<br/>
-All content is generated and published by users.<br/><br/>
-
-We do not guarantee:
-- Accuracy of submitted stories<br/>
-- Financial outcomes from participation<br/><br/>
-
-This platform is not financial advice.<br/>
-Users are fully responsible for their content and actions.
+User-generated content. Not financial advice.
 </p>
 </div>
 
@@ -282,42 +249,22 @@ Users are fully responsible for their content and actions.
 
 <div>
 <h4>TANDANG</h4>
-<p>
-A protocol where truth is not dictated, but discovered.<br/>
-Built for open societies and transparent information flow.
-</p>
+<p>Decentralized journalism protocol.</p>
 </div>
 
 <div>
 <h4>Product</h4>
-<p>
-Feed<br/>
-AI Market Engine<br/>
-Trending Signals<br/>
-Reputation Layer<br/>
-Story Indexing
-</p>
+<p>Feed<br/>AI Engine<br/>Trending</p>
 </div>
 
 <div>
 <h4>Resources</h4>
-<p>
-Whitepaper<br/>
-Docs (Coming Soon)<br/>
-API (Planned)<br/>
-Press Kit<br/>
-Community
-</p>
+<p>Whitepaper<br/>Docs<br/>API<br/>Community</p>
 </div>
 
 <div>
 <h4>Legal</h4>
-<p>
-Privacy Policy<br/>
-Terms of Use<br/>
-Disclaimer<br/>
-Content Responsibility
-</p>
+<p>Privacy<br/>Terms<br/>Disclaimer</p>
 </div>
 
 </div>
