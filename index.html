@@ -3,165 +3,179 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TandangNews — Citizen Journalism Onchain</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<title>TandangNews — Onchain Protocol</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono&family=DM+Sans&display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+
 <style>
-:root {
-  --bg:#0a0a0b; --surface:#111113; --surface2:#18181c; --border:#2a2a30; --border2:#1e1e24;
-  --text:#e8e8ec; --muted:#888894; --accent:#e8c547; --accent2:#f0d870; --sol:#9945FF; --base:#0052FF;
-  --green:#22c55e; --red:#ef4444; --orange:#f97316; --radius:6px; --font-display:'Playfair Display', Georgia, serif;
-  --font-mono:'DM Mono', monospace; --font-body:'DM Sans', sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;min-height:100vh;overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
-::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+body{margin:0;background:#0a0a0b;color:#e8e8ec;font-family:'DM Sans';}
+.rain{position:fixed;inset:0;background:url("https://i.imgur.com/NM4Q9Wc.gif");opacity:0.05;pointer-events:none;}
 
-/* HEADER */
-header{position:sticky;top:0;z-index:100;background:rgba(10,10,11,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);}
-.header-inner{max-width:1100px;margin:0 auto;padding:0 16px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0;}
-.logo-mark{width:32px;height:32px;background:var(--accent);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:16px;color:#000;letter-spacing:-1px;}
-.logo-text{font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--text);letter-spacing:-0.5px;}
-.logo-text span{color:var(--accent);}
-.header-actions{display:flex;align-items:center;gap:8px;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--radius);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all 0.2s;white-space:nowrap;}
-.btn-primary{background:var(--accent);color:#000;}.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
-.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}.btn-ghost:hover{color:var(--text);border-color:var(--muted);}
-.btn-sm{padding:5px 10px;font-size:12px;}
+.container{max-width:1000px;margin:auto;padding:20px;}
+h1{font-family:'Playfair Display';font-size:40px;}
 
-/* MAIN */
-main{max-width:1100px;margin:0 auto;padding:0 16px;}
+.glitch{position:relative;}
+.glitch::after{content:attr(data-text);position:absolute;left:2px;top:2px;color:red;opacity:0.2;}
 
-/* HERO */
-.hero{padding:32px 0 24px;border-bottom:1px solid var(--border2);margin-bottom:24px;}
-.hero-tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
-.hero-tag::before{content:'';display:block;width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s ease infinite;}
-.hero h1{font-family:var(--font-display);font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.1;letter-spacing:-1.5px;color:var(--text);max-width:700px;margin-bottom:12px;}
-.hero h1 em{font-style:italic;color:var(--accent);}
-.hero-sub{color:var(--muted);font-size:14px;max-width:500px;line-height:1.6;}
-
-/* AI PRICE BREAKDOWN */
-.ai-price-display{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:16px;transition:all 0.3s;}
-.ai-price-left{display:flex;align-items:center;gap:8px;}
-.ai-price-icon{font-size:20px;}
-.ai-price-label{font-size:12px;color:var(--muted);}
-.ai-price-label strong{display:block;font-family:var(--font-mono);font-size:18px;color:var(--accent);font-weight:500;}
-
-/* ARTICLE GRID */
-.content-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:8px;overflow:hidden;margin-bottom:24px;}
-@media(min-width:700px){.content-grid{grid-template-columns:1fr 1fr;}}
-.article-card{background:var(--surface);padding:18px 20px;cursor:pointer;transition:background 0.15s;position:relative;}
-.article-card:hover{background:var(--surface2);}
-.card-title{font-family:var(--font-display);font-size:16px;font-weight:700;line-height:1.3;letter-spacing:-0.3px;color:var(--text);margin-bottom:7px;}
-.card-summary{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-
-/* FOOTER MENU */
-footer{padding:24px 16px;border-top:1px solid var(--border2);display:flex;flex-direction:column;gap:12px;color:var(--muted);}
-footer a{color:var(--accent);text-decoration:none;transition:color 0.2s;}
-footer a:hover{color:var(--accent2);}
-
-/* BID SLIDER */
-.bid-slider{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
-.bid-slider input[type="range"]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:var(--border);outline:none;}
-.bid-slider input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--accent);cursor:pointer;transition:all 0.2s;}
-.bid-slider input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.2);}
-
-/* ORYNTH BADGE */
-.orynth-badge{display:flex;justify-content:center;margin:24px 0;}
-
-/* MEDIA */
-@media(max-width:600px){.hero h1{font-size:26px;}.content-grid{grid-template-columns:1fr;}}
-@keyframes pulse{0%,100%{opacity:0.2;}50%{opacity:1;}}
+.card{background:#111;padding:15px;margin:10px 0;border:1px solid #222;}
+button{background:#e8c547;border:none;padding:8px 14px;cursor:pointer;}
+input,textarea{width:100%;padding:8px;margin-top:6px;background:#000;color:#fff;border:1px solid #333;}
+.small{font-size:12px;color:#888;}
 </style>
 </head>
+
 <body>
-<header>
-  <div class="header-inner">
-    <a href="#" class="logo"><div class="logo-mark">T</div><div class="logo-text">Tandang<span>News</span></div></a>
-    <div class="header-actions">
-      <a href="#about" class="btn btn-ghost btn-sm">About</a>
-      <a href="#howto" class="btn btn-ghost btn-sm">How To</a>
-      <a href="#team" class="btn btn-ghost btn-sm">Team</a>
-      <a href="#privacy" class="btn btn-ghost btn-sm">Privacy</a>
-      <a href="https://x.com/tandangnews" class="btn btn-primary btn-sm" target="_blank">X Official</a>
-    </div>
-  </div>
-</header>
 
-<main>
-  <section class="hero">
-    <div class="hero-tag">ONCHAIN JOURNALISM</div>
-    <h1>Experience <em>Next-Level</em> Citizen Journalism</h1>
-    <div class="hero-sub">A Web3 powered platform for journalists and readers. Track stories on-chain, bid for insights, and see AI-powered price analytics.</div>
-  </section>
+<div class="rain"></div>
 
-  <div class="ai-price-display">
-    <div class="ai-price-left">
-      <div class="ai-price-icon">🧠</div>
-      <div class="ai-price-label"><strong>$123.45</strong> AI Price</div>
-    </div>
-    <div class="ai-price-note">Premium estimation</div>
-  </div>
+<div class="container">
 
-  <div class="bid-slider">
-    <label>🔴 X journalists watching this story</label>
-    <input type="range" min="0" max="100" value="30" />
-    <span>🪙 Simulated Bid: 30</span>
-  </div>
+<h1 class="glitch" data-text="Truth Has a Market Price">
+Truth Has a Market Price
+</h1>
 
-  <div class="content-grid">
-    <div class="article-card">
-      <div class="card-title">Global Web3 Summit Highlights</div>
-      <div class="card-summary">The latest developments in blockchain and decentralized journalism were showcased at the Web3 Summit...</div>
-    </div>
-    <div class="article-card">
-      <div class="card-title">AI-Powered Reporting Gains Traction</div>
-      <div class="card-summary">Journalists increasingly rely on AI analytics for story valuations and trending insights in real-time...</div>
-    </div>
-    <div class="article-card">
-      <div class="card-title">Decentralized News and Community Engagement</div>
-      <div class="card-summary">Readers now participate directly in story verification and bidding for exclusive content on-chain...</div>
-    </div>
-  </div>
+<div class="card">
+<div id="wallet">Wallet: Not connected</div>
+<button onclick="connectWallet()">Connect Phantom</button>
+<button onclick="airdrop()">Airdrop</button>
+</div>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>TandangNews leverages blockchain technology to provide transparent, on-chain citizen journalism. Every story is trackable and verifiable.</p>
-  </section>
+<div class="card">
+<h3>AI Price</h3>
+<strong id="price">$120</strong>
+</div>
 
-  <section id="howto">
-    <h2>How To</h2>
-    <p>Submit your story, bid for insights, track AI price analytics, and engage with the community—all on-chain.</p>
-  </section>
+<div class="card">
+<h3>Bid</h3>
+<input type="range" min="0" max="100" value="30" id="bid"/>
+<div id="bidText">Bid: 30</div>
+<button onclick="sendBid()">Send Bid</button>
+</div>
 
-  <section id="team">
-    <h2>Team</h2>
-    <p>Our team is a diverse group of Web3 enthusiasts and journalists (placeholder names for now).</p>
-  </section>
+<div class="card">
+<h3>Submit Story</h3>
+<input id="title" placeholder="Title"/>
+<textarea id="content" placeholder="Content"></textarea>
+<button onclick="submitStory()">Submit</button>
+</div>
 
-  <section id="privacy">
-    <h2>Privacy Policy</h2>
-    <p>We value user privacy. All on-chain interactions are pseudonymous and no personal data is sold. Analytics data is aggregated for platform insights only.</p>
-  </section>
+<div class="card">
+<h3>Stories</h3>
+<div id="stories"></div>
+</div>
 
-  <div class="orynth-badge">
-    <a href="https://orynth.dev/projects/journalism-onchain" target="_blank" rel="noopener">
-      <img src="https://orynth.dev/api/badge/journalism-onchain?theme=light&style=default" alt="Featured on Orynth" width="260" height="80" />
-    </a>
-  </div>
-</main>
+<div class="card">
+<h3>Logs</h3>
+<div id="logs" class="small"></div>
+</div>
 
-<footer>
-  <p>© 2026 TandangNews — All rights reserved.</p>
-  <p><a href="https://orynth.dev/projects/journalism-onchain" target="_blank">Featured on Orynth</a> | <a href="https://x.com/tandangnews" target="_blank">X Official</a></p>
-</footer>
+</div>
 
 <script>
-const slider = document.querySelector('.bid-slider input');
-const span = document.querySelector('.bid-slider span');
-slider.addEventListener('input',()=>{span.textContent=`🪙 Simulated Bid: ${slider.value}`;});
+const connection = new solanaWeb3.Connection(
+  solanaWeb3.clusterApiUrl('devnet'),
+  'confirmed'
+);
+
+let wallet=null;
+let stories=[];
+
+/* CONNECT */
+async function connectWallet(){
+  wallet=window.solana;
+  await wallet.connect();
+  document.getElementById("wallet").innerText="Connected: "+wallet.publicKey;
+}
+
+/* AIRDROP */
+async function airdrop(){
+  if(!wallet) return alert("Connect first");
+  const sig=await connection.requestAirdrop(wallet.publicKey,1e9);
+  log("Airdrop: "+sig);
+}
+
+/* PRICE */
+function updatePrice(){
+  const bid=document.getElementById("bid").value;
+  const price=100+bid*0.8+Math.random()*10;
+  document.getElementById("price").innerText="$"+price.toFixed(2);
+}
+setInterval(updatePrice,2000);
+
+/* BID */
+async function sendBid(){
+  if(!wallet) return alert("Connect first");
+
+  const tx=new solanaWeb3.Transaction().add(
+    solanaWeb3.SystemProgram.transfer({
+      fromPubkey:wallet.publicKey,
+      toPubkey:wallet.publicKey,
+      lamports:1000
+    })
+  );
+
+  tx.feePayer=wallet.publicKey;
+  tx.recentBlockhash=(await connection.getLatestBlockhash()).blockhash;
+
+  const signed=await wallet.signTransaction(tx);
+  const sig=await connection.sendRawTransaction(signed.serialize());
+
+  log("Bid TX: "+sig);
+}
+
+/* SUBMIT */
+async function submitStory(){
+  if(!wallet) return alert("Connect first");
+
+  const title=document.getElementById("title").value;
+  const content=document.getElementById("content").value;
+
+  const tx=new solanaWeb3.Transaction().add(
+    new solanaWeb3.TransactionInstruction({
+      keys:[],
+      programId:new solanaWeb3.PublicKey("MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr"),
+      data:new TextEncoder().encode("Story:"+title)
+    })
+  );
+
+  tx.feePayer=wallet.publicKey;
+  tx.recentBlockhash=(await connection.getLatestBlockhash()).blockhash;
+
+  const signed=await wallet.signTransaction(tx);
+  const sig=await connection.sendRawTransaction(signed.serialize());
+
+  stories.unshift({title,content,tx:sig});
+  render();
+
+  log("Story TX: "+sig);
+}
+
+/* RENDER */
+function render(){
+  const el=document.getElementById("stories");
+  el.innerHTML='';
+  stories.forEach(s=>{
+    el.innerHTML+=`
+    <div class="card">
+      <b>${s.title}</b><br/>
+      <span class="small">${s.content}</span><br/>
+      TX: ${s.tx.slice(0,20)}...
+    </div>`;
+  });
+}
+
+/* SLIDER */
+document.getElementById("bid").oninput=(e)=>{
+  document.getElementById("bidText").innerText="Bid: "+e.target.value;
+};
+
+/* LOG */
+function log(msg){
+  const el=document.getElementById("logs");
+  el.innerHTML="<div>"+msg+"</div>"+el.innerHTML;
+}
 </script>
+
 </body>
 </html>
