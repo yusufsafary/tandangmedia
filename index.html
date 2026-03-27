@@ -127,6 +127,28 @@ padding:0 24px;
 .section h2{font-family:'Playfair Display';}
 .small{color:var(--muted);margin-top:8px;line-height:1.6;}
 
+/* PARTNER TICKER */
+.partner-ticker{
+overflow:hidden;
+border:1px solid var(--border);
+border-radius:10px;
+background:var(--glass);
+padding:10px 0;
+margin-top:12px;
+white-space:nowrap;
+}
+.partner-ticker p{
+display:inline-block;
+padding:0 40px;
+font-size:14px;
+color:var(--accent);
+animation:scroll-left 15s linear infinite;
+}
+@keyframes scroll-left{
+0%{transform:translateX(100%);}
+100%{transform:translateX(-100%);}
+}
+
 footer{
 border-top:1px solid var(--border);
 padding:40px 24px;
@@ -157,16 +179,13 @@ footer h4{color:#fff;margin-bottom:10px;}
 </div>
 </header>
 
-<!-- MINIMAL PROTOTYPE BANNER -->
 <div class="banner">
 <strong>Prototype</strong> — Experimental AI scoring & simulated market · Roadmap: Beta Q3 2026 → Public Dec 2026
 </div>
 
 <div class="hero">
 <h1>The Market for Truth.</h1>
-<p>
-A decentralized journalism protocol where narratives compete economically, and truth emerges through open market dynamics.
-</p>
+<p>Decentralized journalism protocol where narratives compete economically.</p>
 </div>
 
 <div class="grid">
@@ -193,8 +212,7 @@ A decentralized journalism protocol where narratives compete economically, and t
 <div class="section">
 <h2>Whitepaper</h2>
 <p class="small">
-TANDANG is a decentralized journalism protocol designed to realign incentives in media.
-Information is priced dynamically based on credibility, engagement, and participation.
+TANDANG is a decentralized journalism protocol. Information is priced dynamically based on credibility, engagement, and participation.
 </p>
 </div>
 
@@ -211,7 +229,7 @@ Information is priced dynamically based on credibility, engagement, and particip
 <div class="section">
 <h2>How To Use</h2>
 <p class="small">
-Submit stories, observe pricing, track trends, and build reputation as a journalist in the system.
+Submit stories, observe pricing, track trends, and build reputation as a journalist.
 </p>
 </div>
 
@@ -226,100 +244,50 @@ Ravi Prasetya — Web3 Research
 </div>
 
 <div class="section">
-<h2>Media Partnerships</h2>
-<p class="small">
-CoinDesk • Decrypt • Blocktempo • Web3 Times
+<h2>Media Partnerships & Potential Partners</h2>
+<div class="partner-ticker">
+<p>
+CoinDesk • Decrypt • Web3 Times • Blocktempo • Orynth • Binance Media • Polygon Media • Solana Media • Ethereum Media
 </p>
-</div>
-
-<!-- POTENTIAL PARTNERS -->
-<div class="section">
-<h2>Potential Partners & Investors</h2>
-<p class="small">
-We are exploring partnerships with leading blockchain media, AI firms, and innovative Web3 platforms.
-</p>
-<div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:12px; justify-content:center;">
-<div style="text-align:center; flex:0 0 100px;">
-<img src="https://cryptologos.cc/logos/coindesk-logo.png?v=024" 
-alt="CoinDesk Logo" style="max-height:50px; display:block; margin:auto;">
-<p style="font-size:10px;color:var(--muted);margin-top:4px;">CoinDesk</p>
-</div>
-
-<div style="text-align:center; flex:0 0 100px;">
-<img src="https://cryptologos.cc/logos/decrypt-logo.png?v=024" 
-alt="Decrypt Logo" style="max-height:50px; display:block; margin:auto;">
-<p style="font-size:10px;color:var(--muted);margin-top:4px;">Decrypt</p>
-</div>
-
-<div style="text-align:center; flex:0 0 100px;">
-<img src="https://cryptologos.cc/logos/web3-times-logo.png?v=024" 
-alt="Web3 Times Logo" style="max-height:50px; display:block; margin:auto;">
-<p style="font-size:10px;color:var(--muted);margin-top:4px;">Web3 Times</p>
-</div>
-
-<div style="text-align:center; flex:0 0 100px;">
-<img src="https://cryptologos.cc/logos/blocktempo-logo.png?v=024" 
-alt="Blocktempo Logo" style="max-height:50px; display:block; margin:auto;">
-<p style="font-size:10px;color:var(--muted);margin-top:4px;">Blocktempo</p>
-</div>
-
-<div style="text-align:center; flex:0 0 100px;">
-<img src="https://orynth.dev/api/badge/journalism-onchain?theme=light&style=default" 
-alt="Orynth Logo" style="max-height:50px; display:block; margin:auto;">
-<p style="font-size:10px;color:var(--muted);margin-top:4px;">Orynth</p>
-</div>
 </div>
 </div>
 
 <div class="section">
 <h2>Privacy Policy</h2>
-<p class="small">
-No personal data collection. Wallet-based identity only.
-</p>
+<p class="small">No personal data collection. Wallet-based identity only.</p>
 </div>
 
 <div class="section">
 <h2>Legal</h2>
-<p class="small">
-User-generated content. Not financial advice.
-</p>
+<p class="small">User-generated content. Not financial advice.</p>
 </div>
 
 <footer>
-
 <div class="footer-grid">
-
 <div>
 <h4>TANDANG</h4>
 <p>Decentralized journalism protocol.</p>
 </div>
-
 <div>
 <h4>Product</h4>
 <p>Feed<br/>AI Engine<br/>Trending</p>
 </div>
-
 <div>
 <h4>Resources</h4>
 <p>Whitepaper<br/>Docs<br/>API<br/>Community</p>
 </div>
-
 <div>
 <h4>Legal</h4>
 <p>Privacy<br/>Terms<br/>Disclaimer</p>
 </div>
-
 </div>
 
 <div style="text-align:center; margin-top:40px;">
 <a href="https://orynth.dev/projects/journalism-onchain" target="_blank" rel="noopener">
 <img src="https://orynth.dev/api/badge/journalism-onchain?theme=light&style=default"
-alt="Featured on Orynth"
-width="260"
-height="80"/>
+alt="Featured on Orynth" width="260" height="80"/>
 </a>
 </div>
-
 </footer>
 
 <script>
@@ -330,21 +298,16 @@ let stories=JSON.parse(localStorage.getItem("stories"))||[
 
 let journalists={"aria":80,"leo":60};
 
-function score(text){
-return Math.min(100,text.length/6+Math.random()*10);
-}
+function score(text){return Math.min(100,text.length/6+Math.random()*10);}
 
 function submitStory(){
 const t=title.value;
 const c=content.value;
 const a="user_"+Math.floor(Math.random()*999);
-
 const s=score(c);
 const p=Math.floor(120+s*2);
-
 stories.unshift({t,c,a,p});
 journalists[a]=(journalists[a]||0)+s;
-
 localStorage.setItem("stories",JSON.stringify(stories));
 render();
 }
@@ -356,8 +319,7 @@ feed.innerHTML=stories.map(x=>`
 <div class="meta">${x.a}</div>
 <p>${x.c}</p>
 <div class="price">$${x.p}</div>
-</div>
-`).join("");
+</div>`).join("");
 
 trending.innerHTML=stories.slice(0,5).map(x=>x.t).join("<br/>");
 journalists.innerHTML=Object.entries(journalists).map(x=>x[0]).join("<br/>");
@@ -365,10 +327,7 @@ journalists.innerHTML=Object.entries(journalists).map(x=>x[0]).join("<br/>");
 
 render();
 
-setInterval(()=>{
-market.innerText="$"+(100+Math.random()*40).toFixed(2);
-},2000);
+setInterval(()=>{market.innerText="$"+(100+Math.random()*40).toFixed(2);},2000);
 </script>
-
 </body>
 </html>
