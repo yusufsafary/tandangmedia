@@ -55,6 +55,7 @@ margin:auto;
 padding:18px 24px;
 display:flex;
 justify-content:space-between;
+align-items:center;
 }
 
 .logo{
@@ -81,8 +82,9 @@ padding:0 24px;
 .hero h1{
 font-family:'Playfair Display';
 font-size:64px;
+margin-bottom:12px;
 }
-.hero p{color:var(--muted);}
+.hero p{color:var(--muted);font-size:18px;}
 
 /* GRID */
 .grid{
@@ -105,9 +107,9 @@ transition:.3s;
 }
 .card:hover{transform:translateY(-5px);}
 
-.story-title{font-family:'Playfair Display';font-size:22px;}
-.meta{font-size:12px;color:var(--muted);}
-.price{color:var(--accent);margin-top:8px;font-family:'DM Mono';}
+.story-title{font-family:'Playfair Display';font-size:22px;margin-bottom:6px;}
+.meta{font-size:12px;color:var(--muted);margin-bottom:8px;}
+.price{color:var(--accent);font-family:'DM Mono';margin-top:10px;}
 
 input,textarea{
 width:100%;
@@ -117,14 +119,32 @@ background:#000;
 border:1px solid var(--border);
 border-radius:8px;
 color:#fff;
+font-size:14px;
 }
 
+textarea{min-height:100px; resize:none;}
+
+.submit-btn{
+margin-top:12px;
+width:100%;
+background:linear-gradient(135deg,#e8c547,#f4e29a);
+color:#000;
+border:none;
+border-radius:8px;
+padding:10px;
+cursor:pointer;
+font-weight:600;
+transition:.3s;
+}
+.submit-btn:hover{transform:translateY(-2px);}
+
+/* SECTION */
 .section{
 max-width:1200px;
 margin:80px auto;
 padding:0 24px;
 }
-.section h2{font-family:'Playfair Display';}
+.section h2{font-family:'Playfair Display';margin-bottom:12px;}
 .small{color:var(--muted);margin-top:8px;line-height:1.6;}
 
 /* PARTNER TICKER */
@@ -135,14 +155,26 @@ border-radius:10px;
 background:var(--glass);
 padding:10px 0;
 white-space:nowrap;
+margin-bottom:0;
 }
 .partner-ticker p{
 display:inline-block;
-padding:0 40px;
 font-size:14px;
-color:var(--accent);
-animation:scroll-left 15s linear infinite;
+font-weight:600;
+animation:scroll-left 20s linear infinite;
 }
+.partner-ticker span{
+padding:0 40px;
+}
+.partner1{color:#e8c547;}
+.partner2{color:#ff7f50;}
+.partner3{color:#7fffd4;}
+.partner4{color:#ff69b4;}
+.partner5{color:#1e90ff;}
+.partner6{color:#adff2f;}
+.partner7{color:#ffa500;}
+.partner8{color:#00ced1;}
+.partner9{color:#ff1493;}
 @keyframes scroll-left{
 0%{transform:translateX(100%);}
 100%{transform:translateX(-100%);}
@@ -178,10 +210,18 @@ footer h4{color:#fff;margin-bottom:10px;}
 </div>
 </header>
 
-<!-- PARTNER TICKER di atas banner prototype -->
+<!-- Partner Ticker -->
 <div class="partner-ticker">
 <p>
-CoinDesk • Decrypt • Web3 Times • Blocktempo • Orynth • Binance Media • Polygon Media • Solana Media • Ethereum Media
+<span class="partner1">CoinDesk</span>
+<span class="partner2">Decrypt</span>
+<span class="partner3">Web3 Times</span>
+<span class="partner4">Blocktempo</span>
+<span class="partner5">Orynth</span>
+<span class="partner6">Binance Media</span>
+<span class="partner7">Polygon Media</span>
+<span class="partner8">Solana Media</span>
+<span class="partner9">Ethereum Media</span>
 </p>
 </div>
 
@@ -204,7 +244,7 @@ CoinDesk • Decrypt • Web3 Times • Blocktempo • Orynth • Binance Media 
 <h3>Submit Story</h3>
 <input id="title" placeholder="Headline"/>
 <textarea id="content" placeholder="Write your story..."></textarea>
-<button class="btn" onclick="submitStory()">Publish</button>
+<button class="submit-btn" onclick="submitStory()">Publish</button>
 </div>
 </div>
 
@@ -299,14 +339,16 @@ let journalists={"aria":80,"leo":60};
 function score(text){return Math.min(100,text.length/6+Math.random()*10);}
 
 function submitStory(){
-const t=title.value;
-const c=content.value;
+const t=title.value.trim();
+const c=content.value.trim();
+if(!t||!c){alert("Please fill headline and content"); return;}
 const a="user_"+Math.floor(Math.random()*999);
 const s=score(c);
 const p=Math.floor(120+s*2);
 stories.unshift({t,c,a,p});
 journalists[a]=(journalists[a]||0)+s;
 localStorage.setItem("stories",JSON.stringify(stories));
+title.value=""; content.value="";
 render();
 }
 
@@ -327,5 +369,6 @@ render();
 
 setInterval(()=>{market.innerText="$"+(100+Math.random()*40).toFixed(2);},2000);
 </script>
+
 </body>
 </html>
