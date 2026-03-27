@@ -3,71 +3,44 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TandangNews — Onchain Journalism</title>
+<title>TandangNews — Own the First Record</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
 
 <style>
-body {
-  margin:0;
-  font-family:'DM Sans',sans-serif;
-  background:#0a0a0b;
-  color:#e8e8ec;
-}
-header {
-  padding:16px;
-  border-bottom:1px solid #222;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
-  background:#0a0a0b;
-}
+body { margin:0; font-family:'DM Sans',sans-serif; background:#0a0a0b; color:#e8e8ec; }
+header { padding:16px; border-bottom:1px solid #222; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; background:#0a0a0b; }
 .logo { font-weight:900; }
-nav a {
-  margin-left:12px;
-  font-size:14px;
-  color:#aaa;
-}
+nav a { margin-left:12px; font-size:14px; color:#aaa; }
 nav a:hover { color:#fff; }
 
-.hero {
-  padding:70px 20px;
-  max-width:900px;
-  margin:auto;
-}
-.hero h1 {
-  font-family:'Playfair Display';
-  font-size:44px;
-}
-.section {
-  max-width:900px;
-  margin:60px auto;
-  padding:0 20px;
-}
+.hero { padding:80px 20px; max-width:900px; margin:auto; }
+.hero h1 { font-family:'Playfair Display'; font-size:46px; }
+.hero p { opacity:0.8; }
+.cta { margin-top:20px; display:inline-block; padding:10px 18px; border:1px solid #e8c547; border-radius:8px; }
+
+.section { max-width:900px; margin:60px auto; padding:0 20px; }
+
 .card {
   background:#111;
   padding:18px;
   border:1px solid #222;
-  border-radius:10px;
-  margin-bottom:14px;
-  transition:0.2s;
+  border-radius:12px;
+  margin-bottom:16px;
+  transition:0.25s;
 }
-.card:hover {
-  border-color:#e8c547;
-  transform:translateY(-3px);
-}
-.small { font-size:13px; color:#888; }
-h2 { font-family:'Playfair Display'; }
+.card:hover { border-color:#e8c547; transform:translateY(-4px); }
 
-.footer {
-  border-top:1px solid #222;
-  padding:30px 20px;
-  margin-top:60px;
-  font-size:13px;
-  color:#888;
-}
+.meta { font-size:12px; color:#888; margin-top:8px; }
+.ai-box { margin-top:10px; padding:10px; border:1px dashed #333; border-radius:8px; font-size:12px; color:#aaa; }
+.live { margin-top:8px; font-size:12px; color:#ff4d4d; }
+.bid { margin-top:10px; font-size:13px; color:#e8c547; }
+.actions { margin-top:12px; display:flex; gap:10px; }
+.btn { font-size:12px; padding:6px 10px; border:1px solid #333; border-radius:6px; cursor:pointer; }
+.btn:hover { border-color:#e8c547; }
+
+.footer { border-top:1px solid #222; padding:30px 20px; margin-top:60px; font-size:13px; color:#888; }
+h2 { font-family:'Playfair Display'; }
 a { color:#e8c547; text-decoration:none; }
 </style>
 </head>
@@ -80,96 +53,102 @@ a { color:#e8c547; text-decoration:none; }
     <a href="#about">About</a>
     <a href="#how">How</a>
     <a href="#team">Team</a>
-    <a href="#privacy">Privacy</a>
   </nav>
 </header>
 
 <div class="hero">
-  <h1>Own the first record of reality.</h1>
-  <p>Before it becomes news, it lives here. A decentralized layer where stories are submitted, verified, and owned.</p>
-
-  <div style="margin-top:20px;">
-    <a href="https://orynth.dev/projects/journalism-onchain" target="_blank">
-      <img src="https://orynth.dev/api/badge/journalism-onchain?theme=light&style=default" width="260">
-    </a>
-  </div>
+  <h1>Before it becomes news, it lives here.</h1>
+  <p>The first draft of reality — owned, verified, and traded.</p>
+  <div class="cta">Submit a Story</div>
 </div>
 
 <div class="section">
-  <h2>Latest Stories</h2>
+  <h2>🔥 Trending Stories</h2>
 
   <div class="card">
     <strong>Wildfire spreads across Southern Europe</strong>
-    <p>Fast-moving fires force evacuations as emergency response struggles to contain the damage.</p>
-    <div class="small">AI Verified · Hash: 0x91fa... · 2.1 ETH</div>
+    <p>Fast-moving fires force evacuations as emergency response struggles.</p>
+
+    <div class="ai-box">🧠 AI Breakdown · Urgency: High · Impact: Critical · Virality: Rising</div>
+    <div class="live">🔴 17 journalists watching</div>
+    <div class="bid">🪙 Highest Bid: 2.7 ETH</div>
+
+    <div class="actions">
+      <div class="btn" onclick="share('Wildfire spreads across Southern Europe')">Share</div>
+      <div class="btn" onclick="bid(this)">Place Bid</div>
+    </div>
+
+    <div class="meta">AI Verified · Hash: 0x91fa...</div>
   </div>
 
   <div class="card">
-    <strong>Global banking leak exposes hidden offshore networks</strong>
-    <p>Leaked documents reveal a complex web of financial secrecy involving high-profile figures.</p>
-    <div class="small">AI Verified · Hash: 0xa12c... · 3.4 ETH</div>
-  </div>
+    <strong>Banking leak reveals offshore network</strong>
+    <p>Whistleblower exposes hidden global financial system.</p>
 
-  <div class="card">
-    <strong>Mass protests erupt in major capital</strong>
-    <p>Thousands take to the streets following controversial policy reforms.</p>
-    <div class="small">Pending Verification · Hash: 0xff2e... · 1.2 ETH</div>
+    <div class="ai-box">🧠 AI Breakdown · Urgency: Medium · Impact: Global · Virality: High</div>
+    <div class="live">🔴 29 journalists watching</div>
+    <div class="bid">🪙 Highest Bid: 4.1 ETH</div>
+
+    <div class="actions">
+      <div class="btn" onclick="share('Banking leak reveals offshore network')">Share</div>
+      <div class="btn" onclick="bid(this)">Place Bid</div>
+    </div>
+
+    <div class="meta">AI Verified · Hash: 0xa12c...</div>
   </div>
 
 </div>
 
 <div class="section" id="about">
   <h2>About</h2>
-  <p>
-    TandangNews is an experimental onchain journalism layer where citizens become the first source of truth.
-    Each story is timestamped, hashed, and recorded — forming a permanent record before narratives are shaped.
-  </p>
+  <p>TandangNews is a truth marketplace where stories are assets. Every submission becomes a timestamped record — owned before narratives are rewritten.</p>
 </div>
 
 <div class="section" id="how">
   <h2>How it works</h2>
-
-  <div class="card">1. Submit a real-world story</div>
-  <div class="card">2. AI verifies signals & consistency</div>
-  <div class="card">3. Story is hashed & recorded onchain</div>
-  <div class="card">4. Media or collectors acquire the story</div>
-
+  <div class="card">1. Capture reality</div>
+  <div class="card">2. Verify signals</div>
+  <div class="card">3. Mint proof</div>
+  <div class="card">4. Trade the story</div>
 </div>
 
 <div class="section" id="team">
   <h2>Team</h2>
-
-  <div class="card">
-    <strong>Arin Kade</strong>
-    <p>Founder · Narrative Systems</p>
-  </div>
-
-  <div class="card">
-    <strong>Lyra Chen</strong>
-    <p>AI Verification Lead</p>
-  </div>
-
-  <div class="card">
-    <strong>Noel Vire</strong>
-    <p>Onchain Infrastructure</p>
-  </div>
-
+  <div class="card"><strong>Arin Kade</strong><p>Founder</p></div>
+  <div class="card"><strong>Lyra Chen</strong><p>AI Systems</p></div>
 </div>
 
-<div class="section" id="privacy">
-  <h2>Privacy Policy</h2>
-  <p>
-    We prioritize anonymity. Submissions are stored as hashes and may be recorded onchain.
-    No personal identity is required. By submitting, you acknowledge that content may become immutable and publicly accessible.
-  </p>
+<div class="section" style="text-align:center;">
+  <a href="https://orynth.dev/projects/journalism-onchain" target="_blank">
+    <img src="https://orynth.dev/api/badge/journalism-onchain?theme=light&style=default" width="260">
+  </a>
 </div>
 
 <div class="footer">
-  <p>© 2026 TandangNews — Experimental Journalism Protocol</p>
-  <p>
-    Official X: <a href="https://x.com/tandangnews" target="_blank">@tandangnews</a>
-  </p>
+  <p>© 2026 TandangNews</p>
+  <p>Official X: <a href="https://x.com/tandangnews" target="_blank">@tandangnews</a></p>
 </div>
+
+<script>
+function share(title){
+  const text = `Breaking: ${title} — first recorded onchain via TandangNews`;
+  const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`;
+  window.open(url,'_blank');
+}
+
+function bid(el){
+  el.innerText = "Bid Placed ✓";
+}
+
+// fake live updates
+setInterval(()=>{
+  document.querySelectorAll('.live').forEach(el=>{
+    let n = parseInt(el.innerText.match(/\d+/));
+    n += Math.floor(Math.random()*3);
+    el.innerText = `🔴 ${n} journalists watching`;
+  });
+},4000);
+</script>
 
 </body>
 </html>
