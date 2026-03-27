@@ -1,171 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TandangNews — Onchain Citizen Journalism</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TandangNews — Citizen Journalism Onchain</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 :root {
-  --bg: #0a0a0b; --surface: #111113; --surface2: #18181c; --border: #2a2a30; --border2: #1e1e24;
-  --text: #e8e8ec; --muted: #888894; --accent: #e8c547; --accent2: #f0d870; --sol: #9945FF;
-  --radius: 6px;
-  --font-display: 'Playfair Display', Georgia, serif; --font-mono: 'DM Mono', monospace; --font-body: 'DM Sans', sans-serif;
+  --bg:#0a0a0b; --surface:#111113; --surface2:#18181c; --border:#2a2a30; --border2:#1e1e24;
+  --text:#e8e8ec; --muted:#888894; --accent:#e8c547; --accent2:#f0d870; --sol:#9945FF; --base:#0052FF;
+  --green:#22c55e; --red:#ef4444; --orange:#f97316; --radius:6px; --font-display:'Playfair Display', Georgia, serif;
+  --font-mono:'DM Mono', monospace; --font-body:'DM Sans', sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;min-height:100vh;}
-a{color:inherit;text-decoration:none;}
-header{position:sticky;top:0;z-index:100;background:rgba(10,10,11,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border2);}
-.header-inner{max-width:1100px;margin:0 auto;padding:0 16px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
-.logo-mark{width:36px;height:36px;background:var(--accent);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:16px;color:#000;}
-.logo-text{font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--text);}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:rgba(10,10,11,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 16px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0;}
+.logo-mark{width:32px;height:32px;background:var(--accent);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:16px;color:#000;letter-spacing:-1px;}
+.logo-text{font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--text);letter-spacing:-0.5px;}
 .logo-text span{color:var(--accent);}
-.header-actions{display:flex;gap:8px;flex-wrap:wrap;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--radius);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all 0.2s;}
-.btn-primary{background:var(--accent);color:#000;}
-.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
-.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
-.btn-ghost:hover{color:var(--text);border-color:var(--muted);}
-.hero{padding:32px 16px 24px;text-align:center;}
-.hero-tag{font-family:var(--font-mono);font-size:10px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;display:inline-block;letter-spacing:2px;}
-.hero h1{font-family:var(--font-display);font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.1;margin-bottom:12px;}
-.hero h1 em{color:var(--accent);font-style:italic;}
-.hero-sub{font-size:14px;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.5;}
-nav{display:flex;justify-content:center;gap:18px;margin-bottom:24px;flex-wrap:wrap;}
-nav a{color:var(--text);text-decoration:none;font-family:var(--font-mono);font-size:12px;padding:6px 12px;border-radius:var(--radius);transition:all 0.2s;}
-nav a:hover{background:var(--surface2);color:var(--accent);}
-.content-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border2);border-radius:8px;overflow:hidden;margin-bottom:24px;}
+.header-actions{display:flex;align-items:center;gap:8px;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--radius);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all 0.2s;white-space:nowrap;}
+.btn-primary{background:var(--accent);color:#000;}.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}.btn-ghost:hover{color:var(--text);border-color:var(--muted);}
+.btn-sm{padding:5px 10px;font-size:12px;}
+
+/* MAIN */
+main{max-width:1100px;margin:0 auto;padding:0 16px;}
+
+/* HERO */
+.hero{padding:32px 0 24px;border-bottom:1px solid var(--border2);margin-bottom:24px;}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.hero-tag::before{content:'';display:block;width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s ease infinite;}
+.hero h1{font-family:var(--font-display);font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.1;letter-spacing:-1.5px;color:var(--text);max-width:700px;margin-bottom:12px;}
+.hero h1 em{font-style:italic;color:var(--accent);}
+.hero-sub{color:var(--muted);font-size:14px;max-width:500px;line-height:1.6;}
+
+/* AI PRICE BREAKDOWN */
+.ai-price-display{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:16px;transition:all 0.3s;}
+.ai-price-left{display:flex;align-items:center;gap:8px;}
+.ai-price-icon{font-size:20px;}
+.ai-price-label{font-size:12px;color:var(--muted);}
+.ai-price-label strong{display:block;font-family:var(--font-mono);font-size:18px;color:var(--accent);font-weight:500;}
+
+/* ORYNTH BADGE */
+.orynth-badge{display:flex;justify-content:center;margin-bottom:16px;}
+
+/* ARTICLE GRID */
+.content-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:8px;overflow:hidden;margin-bottom:24px;}
 @media(min-width:700px){.content-grid{grid-template-columns:1fr 1fr;}}
-.article-card{background:var(--surface);padding:18px 20px;cursor:pointer;transition:background 0.15s;}
+.article-card{background:var(--surface);padding:18px 20px;cursor:pointer;transition:background 0.15s;position:relative;}
 .article-card:hover{background:var(--surface2);}
-.card-title{font-family:var(--font-display);font-weight:700;margin-bottom:6px;font-size:16px;}
-.card-summary{font-size:13px;color:var(--muted);line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.onchain-proof{background: rgba(153,69,255,0.06); border:1px solid rgba(153,69,255,0.2); border-radius:var(--radius); padding:12px; margin-top:12px;}
-.proof-title{font-family:var(--font-mono);font-size:10px;color:#9945FF;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
-.proof-row{display:flex;gap:6px;font-size:11px;}
-.proof-key{color:var(--muted);font-family:var(--font-mono);min-width:60px;}
-.proof-val{color:var(--text);font-family:var(--font-mono);word-break:break-all;}
-section{margin:24px 16px;}
-section h2{font-family:var(--font-display);font-size:20px;margin-bottom:12px;color:var(--accent);}
-.fab{display:none;position:fixed;bottom:20px;right:20px;width:52px;height:52px;border-radius:50%;background:var(--accent);color:#000;border:none;font-size:22px;cursor:pointer;align-items:center;justify-content:center;}
-@media(max-width:600px){.fab{display:flex;}}
-.ticker-wrap{background:var(--accent);overflow:hidden;height:28px;display:flex;align-items:center;margin-bottom:16px;}
-.ticker-label{background:#000;color:var(--accent);font-family:var(--font-mono);font-size:10px;font-weight:500;padding:0 10px;display:flex;align-items:center;flex-shrink:0;letter-spacing:1px;text-transform:uppercase;}
-.ticker-track{display:flex;animation:ticker 30s linear infinite;}
-.ticker-item{font-family:var(--font-mono);font-size:11px;color:#000;font-weight:500;padding:0 24px;white-space:nowrap;border-right:1px solid rgba(0,0,0,0.2);}
-@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.price-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:16px 0;transition:all 0.2s;}
-.price-box h3{font-family:var(--font-mono);font-size:13px;color:var(--accent);margin-bottom:12px;}
-.price-row{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:12px;color:var(--text);margin-bottom:8px;}
-.slider-wrap{margin-top:12px;}
-input[type="range"]{width:100%;cursor:pointer;}
-.range-value{margin-top:6px;text-align:right;font-family:var(--font-mono);font-size:12px;color:var(--green);}
+.card-title{font-family:var(--font-display);font-size:16px;font-weight:700;line-height:1.3;letter-spacing:-0.3px;color:var(--text);margin-bottom:7px;}
+.card-summary{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* FOOTER MENU */
+footer{padding:24px 16px;border-top:1px solid var(--border2);display:flex;flex-direction:column;gap:12px;color:var(--muted);}
+footer a{color:var(--accent);text-decoration:none;transition:color 0.2s;}
+footer a:hover{color:var(--accent2);}
+
+/* BID SLIDER */
+.bid-slider{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.bid-slider input[type="range"]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:var(--border);outline:none;}
+.bid-slider input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--accent);cursor:pointer;transition:all 0.2s;}
+.bid-slider input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.2);}
+
+/* MEDIA */
+@media(max-width:600px){.hero h1{font-size:26px;}.content-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-
 <header>
   <div class="header-inner">
-    <a href="#" class="logo"><div class="logo-mark">TN</div><div class="logo-text">Tandang<span>News</span></div></a>
+    <a href="#" class="logo"><div class="logo-mark">T</div><div class="logo-text">Tandang<span>News</span></div></a>
     <div class="header-actions">
-      <button class="btn btn-primary" onclick="alert('Join Premium AI!')">Premium AI 🧠</button>
-      <a href="https://x.com/tandangnews" target="_blank" class="btn btn-ghost">X Official</a>
+      <a href="#about" class="btn btn-ghost btn-sm">About</a>
+      <a href="#howto" class="btn btn-ghost btn-sm">How To</a>
+      <a href="#team" class="btn btn-ghost btn-sm">Team</a>
+      <a href="#privacy" class="btn btn-ghost btn-sm">Privacy</a>
+      <a href="https://x.com/tandangnews" class="btn btn-primary btn-sm" target="_blank">X Official</a>
     </div>
   </div>
 </header>
 
-<div class="hero">
-  <div class="hero-tag">ONCHAIN JOURNALISM</div>
-  <h1>Tracking the latest <em>Web3 news</em> and insights</h1>
-  <div class="hero-sub">Your go-to platform for decentralized citizen journalism — all stories verified on-chain with AI analysis.</div>
-</div>
-
-<nav>
-  <a href="#about">About</a>
-  <a href="#howto">How To</a>
-  <a href="#team">Team</a>
-  <a href="#privacy">Privacy</a>
-</nav>
-
-<div class="ticker-wrap">
-  <div class="ticker-label">LIVE</div>
-  <div class="ticker-track">
-    <div class="ticker-item">X journalists watching this story 🔴</div>
-    <div class="ticker-item">Bidding simulation active 🪙</div>
-    <div class="ticker-item">Premium AI analyzing prices 🧠</div>
-    <div class="ticker-item">X journalists watching this story 🔴</div>
-  </div>
-</div>
-
 <main>
-  <div class="content-grid">
-    <!-- Repeat fake news cards as above -->
-    <div class="article-card">
-      <div class="card-title">Solana NFT boom sparks new journalism tools</div>
-      <div class="card-summary">Developers leverage on-chain verification for transparent news reporting in Web3 communities.</div>
-      <div class="onchain-proof">
-        <div class="proof-title">Onchain Proof</div>
-        <div class="proof-row"><div class="proof-key">Hash:</div><div class="proof-val hash">0xABC123DEF456</div></div>
-        <div class="proof-row"><div class="proof-key">Tx:</div><div class="proof-val tx">0xTX987654321</div></div>
-      </div>
-    </div>
-    <!-- Add more cards if needed -->
+  <section class="hero">
+    <div class="hero-tag">ONCHAIN JOURNALISM</div>
+    <h1>Experience <em>Next-Level</em> Citizen Journalism</h1>
+    <div class="hero-sub">A Web3 powered platform for journalists and readers. Track stories on-chain, bid for insights, and see AI-powered price analytics.</div>
+  </section>
+
+  <div class="orynth-badge">
+    <a href="https://orynth.dev/projects/journalism-onchain" target="_blank" rel="noopener">
+      <img src="https://orynth.dev/api/badge/journalism-onchain?theme=light&style=default" alt="Featured on Orynth" width="260" height="80" />
+    </a>
   </div>
 
-  <!-- Premium AI price breakdown with slider -->
-  <div class="price-box">
-    <h3>Premium AI Price Breakdown 🧠</h3>
-    <div class="price-row"><span>Story Impact Score:</span><span id="impactScore">87/100</span></div>
-    <div class="price-row"><span>Estimated Token Value:</span><span id="tokenValue">0.024 ETH</span></div>
-    <div class="price-row slider-wrap">
-      <label>Bidding Simulation:</label>
-      <input type="range" min="0.01" max="0.05" step="0.001" value="0.024" id="bidSlider">
-      <div class="range-value"><span id="bidValue">0.024 ETH</span></div>
+  <div class="ai-price-display">
+    <div class="ai-price-left">
+      <div class="ai-price-icon">🧠</div>
+      <div class="ai-price-label"><strong>$123.45</strong> AI Price</div>
     </div>
-    <div class="price-row"><span>Community Demand:</span><span>High 🔥</span></div>
+    <div class="ai-price-note">Premium estimation</div>
+  </div>
+
+  <div class="bid-slider">
+    <label>🔴 X journalists watching this story</label>
+    <input type="range" min="0" max="100" value="30" />
+    <span>🪙 Simulated Bid: 30</span>
+  </div>
+
+  <div class="content-grid">
+    <div class="article-card">
+      <div class="card-title">Global Web3 Summit Highlights</div>
+      <div class="card-summary">The latest developments in blockchain and decentralized journalism were showcased at the Web3 Summit...</div>
+    </div>
+    <div class="article-card">
+      <div class="card-title">AI-Powered Reporting Gains Traction</div>
+      <div class="card-summary">Journalists increasingly rely on AI analytics for story valuations and trending insights in real-time...</div>
+    </div>
+    <div class="article-card">
+      <div class="card-title">Decentralized News and Community Engagement</div>
+      <div class="card-summary">Readers now participate directly in story verification and bidding for exclusive content on-chain...</div>
+    </div>
   </div>
 
   <section id="about">
     <h2>About</h2>
-    <p>TandangNews is a decentralized citizen journalism platform where stories are verified on-chain. Our goal is to empower reporters worldwide with Web3 transparency and AI-enhanced insights.</p>
+    <p>TandangNews leverages blockchain technology to provide transparent, on-chain citizen journalism. Every story is trackable and verifiable.</p>
   </section>
 
   <section id="howto">
-    <h2>How To Contribute</h2>
-    <p>Register with your wallet, submit a news story, and get verified on-chain. Premium AI tools provide price analysis, bidding simulation, and community insights.</p>
+    <h2>How To</h2>
+    <p>Submit your story, bid for insights, track AI price analytics, and engage with the community—all on-chain.</p>
   </section>
 
   <section id="team">
     <h2>Team</h2>
-    <p>John Doe – Editor-in-Chief<br>Jane Smith – Web3 Journalist<br>Max Power – AI Analyst<br>Lucy Lane – Community Manager</p>
+    <p>Our team is a diverse group of Web3 enthusiasts and journalists (placeholder names for now).</p>
   </section>
 
   <section id="privacy">
     <h2>Privacy Policy</h2>
-    <p>We respect your privacy. All user data is stored securely, with no third-party sharing. On-chain submissions are publicly verifiable, while personal info remains private.</p>
+    <p>We value user privacy. All on-chain interactions are pseudonymous and no personal data is sold. Analytics data is aggregated for platform insights only.</p>
   </section>
-
-  <div style="text-align:center; margin:24px 0;">
-    <a href="https://orynth.dev/projects/journalism-onchain" target="_blank" rel="noopener">
-      <img src="https://orynth.dev/api/badge/journalism-onchain?theme=light&style=default" alt="Featured on Orynth" width="260" height="80"/>
-    </a>
-  </div>
 </main>
 
-<button class="fab" onclick="alert('Submit a story!')">✎</button>
+<footer>
+  <p>© 2026 TandangNews — All rights reserved.</p>
+  <p><a href="https://orynth.dev/projects/journalism-onchain" target="_blank">Featured on Orynth</a> | <a href="https://x.com/tandangnews" target="_blank">X Official</a></p>
+</footer>
 
 <script>
-const slider = document.getElementById('bidSlider');
-const bidValue = document.getElementById('bidValue');
-const tokenValue = document.getElementById('tokenValue');
-
-slider.addEventListener('input', () => {
-  const val = parseFloat(slider.value).toFixed(3);
-  bidValue.textContent = val + ' ETH';
-  tokenValue.textContent = val + ' ETH';
-});
+// Bid slider interaction
+const slider = document.querySelector('.bid-slider input');
+const span = document.querySelector('.bid-slider span');
+slider.addEventListener('input',()=>{span.textContent=`🪙 Simulated Bid: ${slider.value}`;});
 </script>
-
 </body>
 </html>
