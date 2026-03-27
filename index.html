@@ -3,66 +3,133 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TandangNews — Onchain Protocol</title>
+<title>TandangNews — Citizen Journalism Onchain</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono&family=DM+Sans&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
 
 <style>
-body{margin:0;background:#0a0a0b;color:#e8e8ec;font-family:'DM Sans';}
-.rain{position:fixed;inset:0;background:url("https://i.imgur.com/NM4Q9Wc.gif");opacity:0.05;pointer-events:none;}
+:root{
+--bg:#0a0a0b; --surface:#111113; --surface2:#18181c; --border:#2a2a30;
+--text:#e8e8ec; --muted:#888894; --accent:#e8c547;
+--radius:6px; --font-display:'Playfair Display',serif;
+--font-mono:'DM Mono',monospace; --font-body:'DM Sans',sans-serif;
+}
 
-.container{max-width:1000px;margin:auto;padding:20px;}
-h1{font-family:'Playfair Display';font-size:40px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);overflow-x:hidden;}
 
+/* CINEMATIC BACKGROUND */
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background: repeating-linear-gradient(
+to bottom,
+rgba(255,255,255,0.03) 0px,
+rgba(255,255,255,0.03) 1px,
+transparent 1px,
+transparent 3px
+);
+pointer-events:none;
+opacity:0.4;
+}
+
+body::after{
+content:'';
+position:fixed;
+inset:0;
+background:radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.8));
+pointer-events:none;
+}
+
+/* HEADER */
+header{position:sticky;top:0;background:#0a0a0b;border-bottom:1px solid #222;z-index:10;}
+.header-inner{max-width:1100px;margin:auto;padding:12px;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-family:var(--font-display);font-weight:900;font-size:18px;}
+.logo span{color:var(--accent);}
+
+button{background:var(--accent);border:none;padding:8px 12px;cursor:pointer;margin-left:6px;}
+
+main{max-width:1100px;margin:auto;padding:20px;}
+
+/* HERO */
+.hero h1{font-family:var(--font-display);font-size:42px;}
+.hero h1 em{color:var(--accent);}
 .glitch{position:relative;}
 .glitch::after{content:attr(data-text);position:absolute;left:2px;top:2px;color:red;opacity:0.2;}
+.hero-sub{color:var(--muted);margin-top:10px;}
 
-.card{background:#111;padding:15px;margin:10px 0;border:1px solid #222;}
-button{background:#e8c547;border:none;padding:8px 14px;cursor:pointer;}
+.card{background:var(--surface);padding:16px;margin:12px 0;border:1px solid #222;}
 input,textarea{width:100%;padding:8px;margin-top:6px;background:#000;color:#fff;border:1px solid #333;}
-.small{font-size:12px;color:#888;}
+.small{font-size:12px;color:var(--muted);}
+
+.bid-slider{display:flex;align-items:center;gap:10px;}
+.content-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.article-card{background:var(--surface);padding:15px;border:1px solid #222;}
+
+footer{padding:20px;border-top:1px solid #222;color:var(--muted);}
+footer a{color:var(--accent);text-decoration:none;}
 </style>
 </head>
 
 <body>
 
-<div class="rain"></div>
+<header>
+  <div class="header-inner">
+    <div class="logo">Tandang<span>News</span></div>
+    <div>
+      <a href="https://x.com/tandangnews" target="_blank"><button>Follow X</button></a>
+      <button onclick="connectWallet()">Connect</button>
+      <button onclick="airdrop()">Airdrop</button>
+    </div>
+  </div>
+</header>
 
-<div class="container">
+<main>
 
-<h1 class="glitch" data-text="Truth Has a Market Price">
-Truth Has a Market Price
-</h1>
+<section class="hero">
+  <h1 class="glitch" data-text="Truth Has a Market Price">
+    Experience <em>Next-Level</em> Journalism
+  </h1>
+  <div class="hero-sub">Onchain journalism powered by AI + market signals</div>
+</section>
 
 <div class="card">
 <div id="wallet">Wallet: Not connected</div>
-<button onclick="connectWallet()">Connect Phantom</button>
-<button onclick="airdrop()">Airdrop</button>
 </div>
 
 <div class="card">
-<h3>AI Price</h3>
-<strong id="price">$120</strong>
+<strong id="price">$120.00</strong><br/>
+AI Price
 </div>
 
-<div class="card">
-<h3>Bid</h3>
+<div class="card bid-slider">
 <input type="range" min="0" max="100" value="30" id="bid"/>
-<div id="bidText">Bid: 30</div>
+<span id="bidText">Bid: 30</span>
 <button onclick="sendBid()">Send Bid</button>
 </div>
+
+<div class="content-grid" id="stories"></div>
 
 <div class="card">
 <h3>Submit Story</h3>
 <input id="title" placeholder="Title"/>
 <textarea id="content" placeholder="Content"></textarea>
-<button onclick="submitStory()">Submit</button>
+<button onclick="submitStory()">Submit Onchain</button>
 </div>
 
-<div class="card">
-<h3>Stories</h3>
-<div id="stories"></div>
+<!-- INFO SECTIONS -->
+<div class="card"><h3>About</h3><p>Onchain citizen journalism with transparent story valuation.</p></div>
+<div class="card"><h3>How To</h3><p>Connect wallet → Submit story → Bid → Share to X.</p></div>
+<div class="card"><h3>Team</h3><p>Web3 builders, journalists, and AI researchers.</p></div>
+<div class="card"><h3>Privacy</h3><p>All interactions are onchain & pseudonymous.</p></div>
+
+<!-- ORYNTH BADGE -->
+<div class="card" style="text-align:center;">
+<a href="https://orynth.dev/projects/journalism-onchain" target="_blank">
+<img src="https://orynth.dev/api/badge/journalism-onchain?theme=light" width="260"/>
+</a>
 </div>
 
 <div class="card">
@@ -70,14 +137,15 @@ Truth Has a Market Price
 <div id="logs" class="small"></div>
 </div>
 
-</div>
+</main>
+
+<footer>
+<p>© 2026 TandangNews</p>
+<p><a href="https://x.com/tandangnews" target="_blank">X Official</a></p>
+</footer>
 
 <script>
-const connection = new solanaWeb3.Connection(
-  solanaWeb3.clusterApiUrl('devnet'),
-  'confirmed'
-);
-
+const conn=new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'));
 let wallet=null;
 let stories=[];
 
@@ -90,23 +158,22 @@ async function connectWallet(){
 
 /* AIRDROP */
 async function airdrop(){
-  if(!wallet) return alert("Connect first");
-  const sig=await connection.requestAirdrop(wallet.publicKey,1e9);
+  if(!wallet)return alert("connect wallet");
+  const sig=await conn.requestAirdrop(wallet.publicKey,1e9);
   log("Airdrop: "+sig);
 }
 
 /* PRICE */
 function updatePrice(){
   const bid=document.getElementById("bid").value;
-  const price=100+bid*0.8+Math.random()*10;
+  const price=100+bid*0.9+Math.random()*10;
   document.getElementById("price").innerText="$"+price.toFixed(2);
 }
 setInterval(updatePrice,2000);
 
 /* BID */
 async function sendBid(){
-  if(!wallet) return alert("Connect first");
-
+  if(!wallet)return alert("connect wallet");
   const tx=new solanaWeb3.Transaction().add(
     solanaWeb3.SystemProgram.transfer({
       fromPubkey:wallet.publicKey,
@@ -114,19 +181,29 @@ async function sendBid(){
       lamports:1000
     })
   );
-
   tx.feePayer=wallet.publicKey;
-  tx.recentBlockhash=(await connection.getLatestBlockhash()).blockhash;
-
+  tx.recentBlockhash=(await conn.getLatestBlockhash()).blockhash;
   const signed=await wallet.signTransaction(tx);
-  const sig=await connection.sendRawTransaction(signed.serialize());
-
+  const sig=await conn.sendRawTransaction(signed.serialize());
   log("Bid TX: "+sig);
+}
+
+/* SHARE X */
+function shareTweet(title){
+  const text=encodeURIComponent(
+`🧠 ${title}
+
+Truth has a market price.
+
+https://tandangnews.id
+#Web3 #Solana`
+  );
+  window.open(`https://twitter.com/intent/tweet?text=${text}`);
 }
 
 /* SUBMIT */
 async function submitStory(){
-  if(!wallet) return alert("Connect first");
+  if(!wallet)return alert("connect wallet");
 
   const title=document.getElementById("title").value;
   const content=document.getElementById("content").value;
@@ -140,26 +217,29 @@ async function submitStory(){
   );
 
   tx.feePayer=wallet.publicKey;
-  tx.recentBlockhash=(await connection.getLatestBlockhash()).blockhash;
+  tx.recentBlockhash=(await conn.getLatestBlockhash()).blockhash;
 
   const signed=await wallet.signTransaction(tx);
-  const sig=await connection.sendRawTransaction(signed.serialize());
+  const sig=await conn.sendRawTransaction(signed.serialize());
 
   stories.unshift({title,content,tx:sig});
-  render();
+  renderStories();
+
+  shareTweet(title);
 
   log("Story TX: "+sig);
 }
 
 /* RENDER */
-function render(){
+function renderStories(){
   const el=document.getElementById("stories");
   el.innerHTML='';
   stories.forEach(s=>{
     el.innerHTML+=`
-    <div class="card">
+    <div class="article-card">
       <b>${s.title}</b><br/>
       <span class="small">${s.content}</span><br/>
+      <button onclick="shareTweet('${s.title}')">Share to X</button><br/>
       TX: ${s.tx.slice(0,20)}...
     </div>`;
   });
