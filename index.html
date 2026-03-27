@@ -9,25 +9,25 @@
 :root {
   --bg: #0a0a0b; --surface: #111113; --surface2: #18181c; --border: #2a2a30; --border2: #1e1e24;
   --text: #e8e8ec; --muted: #888894; --accent: #e8c547; --accent2: #f0d870; --sol: #9945FF;
-  --base: #0052FF; --green: #22c55e; --orange: #f97316; --radius: 6px;
+  --radius: 6px;
   --font-display: 'Playfair Display', Georgia, serif; --font-mono: 'DM Mono', monospace; --font-body: 'DM Sans', sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;min-height:100vh;overflow-x:hidden;}
-header{position:sticky;top:0;z-index:100;background:rgba(10,10,11,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);}
-.header-inner{max-width:1100px;margin:0 auto;padding:0 16px;height:56px;display:flex;align-items:center;justify-content:space-between;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+header{position:sticky;top:0;z-index:100;background:rgba(10,10,11,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border2);}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 16px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
-.logo-mark{width:32px;height:32px;background:var(--accent);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:16px;color:#000;letter-spacing:-1px;}
-.logo-text{font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--text);letter-spacing:-0.5px;}
+.logo-mark{width:36px;height:36px;background:var(--accent);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:16px;color:#000;}
+.logo-text{font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--text);}
 .logo-text span{color:var(--accent);}
-.header-actions{display:flex;gap:8px;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--radius);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all 0.2s;}
+.header-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--radius);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all 0.2s;}
 .btn-primary{background:var(--accent);color:#000;}
 .btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
 .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
 .btn-ghost:hover{color:var(--text);border-color:var(--muted);}
-.hero{padding:32px 16px 24px;border-bottom:1px solid var(--border2);margin-bottom:24px;text-align:center;}
+.hero{padding:32px 16px 24px;text-align:center;}
 .hero-tag{font-family:var(--font-mono);font-size:10px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;display:inline-block;letter-spacing:2px;}
 .hero h1{font-family:var(--font-display);font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.1;margin-bottom:12px;}
 .hero h1 em{color:var(--accent);font-style:italic;}
@@ -55,10 +55,12 @@ section h2{font-family:var(--font-display);font-size:20px;margin-bottom:12px;col
 .ticker-track{display:flex;animation:ticker 30s linear infinite;}
 .ticker-item{font-family:var(--font-mono);font-size:11px;color:#000;font-weight:500;padding:0 24px;white-space:nowrap;border-right:1px solid rgba(0,0,0,0.2);}
 @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.price-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:12px;margin:16px 0;}
-.price-box h3{font-family:var(--font-mono);font-size:13px;color:var(--accent);margin-bottom:6px;}
-.price-row{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:12px;color:var(--text);margin-bottom:4px;}
-@media(max-width:600px){.hero h1{font-size:26px;}.content-grid{gap:12px;}}
+.price-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:16px 0;transition:all 0.2s;}
+.price-box h3{font-family:var(--font-mono);font-size:13px;color:var(--accent);margin-bottom:12px;}
+.price-row{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:12px;color:var(--text);margin-bottom:8px;}
+.slider-wrap{margin-top:12px;}
+input[type="range"]{width:100%;cursor:pointer;}
+.range-value{margin-top:6px;text-align:right;font-family:var(--font-mono);font-size:12px;color:var(--green);}
 </style>
 </head>
 <body>
@@ -98,7 +100,7 @@ section h2{font-family:var(--font-display);font-size:20px;margin-bottom:12px;col
 
 <main>
   <div class="content-grid">
-    <!-- Fake news cards -->
+    <!-- Repeat fake news cards as above -->
     <div class="article-card">
       <div class="card-title">Solana NFT boom sparks new journalism tools</div>
       <div class="card-summary">Developers leverage on-chain verification for transparent news reporting in Web3 communities.</div>
@@ -108,50 +110,19 @@ section h2{font-family:var(--font-display);font-size:20px;margin-bottom:12px;col
         <div class="proof-row"><div class="proof-key">Tx:</div><div class="proof-val tx">0xTX987654321</div></div>
       </div>
     </div>
-    <div class="article-card">
-      <div class="card-title">Ethereum DAO funding experiments</div>
-      <div class="card-summary">DAOs are financing independent reporters with smart contracts, enabling trustless contributions.</div>
-      <div class="onchain-proof">
-        <div class="proof-title">Onchain Proof</div>
-        <div class="proof-row"><div class="proof-key">Hash:</div><div class="proof-val hash">0xFEDCBA654321</div></div>
-        <div class="proof-row"><div class="proof-key">Tx:</div><div class="proof-val tx">0xTX123456789</div></div>
-      </div>
-    </div>
-    <div class="article-card">
-      <div class="card-title">Polygon integrates news verification</div>
-      <div class="card-summary">Polygon-based news apps enable on-chain verification to prevent fake news in crypto communities.</div>
-      <div class="onchain-proof">
-        <div class="proof-title">Onchain Proof</div>
-        <div class="proof-row"><div class="proof-key">Hash:</div><div class="proof-val hash">0x123ABC456DEF</div></div>
-        <div class="proof-row"><div class="proof-key">Tx:</div><div class="proof-val tx">0xTX321654987</div></div>
-      </div>
-    </div>
-    <div class="article-card">
-      <div class="card-title">DAO-backed investigative journalism rises</div>
-      <div class="card-summary">Community-funded DAOs support investigative reporters with fully transparent contributions.</div>
-      <div class="onchain-proof">
-        <div class="proof-title">Onchain Proof</div>
-        <div class="proof-row"><div class="proof-key">Hash:</div><div class="proof-val hash">0x789DEF123ABC</div></div>
-        <div class="proof-row"><div class="proof-key">Tx:</div><div class="proof-val tx">0xTX654987321</div></div>
-      </div>
-    </div>
-    <div class="article-card">
-      <div class="card-title">AI tools price news coverage</div>
-      <div class="card-summary">Premium AI tools analyze story impact and suggest pricing for Web3 news contributions.</div>
-      <div class="onchain-proof">
-        <div class="proof-title">Onchain Proof</div>
-        <div class="proof-row"><div class="proof-key">Hash:</div><div class="proof-val hash">0xAAA111BBB222</div></div>
-        <div class="proof-row"><div class="proof-key">Tx:</div><div class="proof-val tx">0xTX111222333</div></div>
-      </div>
-    </div>
+    <!-- Add more cards if needed -->
   </div>
 
-  <!-- Premium AI price breakdown -->
+  <!-- Premium AI price breakdown with slider -->
   <div class="price-box">
     <h3>Premium AI Price Breakdown 🧠</h3>
-    <div class="price-row"><span>Story Impact Score:</span><span>87/100</span></div>
-    <div class="price-row"><span>Estimated Token Value:</span><span>0.024 ETH</span></div>
-    <div class="price-row"><span>Bidding Simulation:</span><span>0.020 - 0.030 ETH</span></div>
+    <div class="price-row"><span>Story Impact Score:</span><span id="impactScore">87/100</span></div>
+    <div class="price-row"><span>Estimated Token Value:</span><span id="tokenValue">0.024 ETH</span></div>
+    <div class="price-row slider-wrap">
+      <label>Bidding Simulation:</label>
+      <input type="range" min="0.01" max="0.05" step="0.001" value="0.024" id="bidSlider">
+      <div class="range-value"><span id="bidValue">0.024 ETH</span></div>
+    </div>
     <div class="price-row"><span>Community Demand:</span><span>High 🔥</span></div>
   </div>
 
@@ -180,10 +151,21 @@ section h2{font-family:var(--font-display);font-size:20px;margin-bottom:12px;col
       <img src="https://orynth.dev/api/badge/journalism-onchain?theme=light&style=default" alt="Featured on Orynth" width="260" height="80"/>
     </a>
   </div>
-
 </main>
 
 <button class="fab" onclick="alert('Submit a story!')">✎</button>
+
+<script>
+const slider = document.getElementById('bidSlider');
+const bidValue = document.getElementById('bidValue');
+const tokenValue = document.getElementById('tokenValue');
+
+slider.addEventListener('input', () => {
+  const val = parseFloat(slider.value).toFixed(3);
+  bidValue.textContent = val + ' ETH';
+  tokenValue.textContent = val + ' ETH';
+});
+</script>
 
 </body>
 </html>
