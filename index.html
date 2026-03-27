@@ -3,35 +3,35 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TANDANG — Onchain News Protocol</title>
+<title>TANDANG — The Market for Truth</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet"/>
 
 <style>
 :root{
---bg:#0a0a0b;
+--bg:#050505;
 --glass:rgba(255,255,255,0.04);
+--glass2:rgba(255,255,255,0.06);
 --border:rgba(255,255,255,0.08);
 --text:#f5f5f7;
 --muted:#8a8a93;
 --accent:#e8c547;
+--accent-soft:#f4e29a;
 }
 
 body{
 margin:0;
-background:radial-gradient(circle at top,#111,#000);
+background:radial-gradient(circle at 20% 0%,#111,#000 60%);
 color:var(--text);
 font-family:'Inter';
-overflow-x:hidden;
 }
 
-/* NOISE */
+/* LIGHT GLOW */
 body::before{
 content:"";
 position:fixed;
 inset:0;
-background:url("https://grainy-gradients.vercel.app/noise.svg");
-opacity:.05;
+background:radial-gradient(circle at top,rgba(232,197,71,0.08),transparent 60%);
 pointer-events:none;
 }
 
@@ -39,15 +39,16 @@ pointer-events:none;
 header{
 position:sticky;
 top:0;
-backdrop-filter:blur(12px);
-background:rgba(0,0,0,.6);
+backdrop-filter:blur(16px);
+background:rgba(0,0,0,0.65);
 border-bottom:1px solid var(--border);
 z-index:10;
 }
+
 .wrap{
 max-width:1300px;
 margin:auto;
-padding:14px;
+padding:18px 24px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -55,118 +56,139 @@ align-items:center;
 
 .logo{
 font-family:'Playfair Display';
+font-size:24px;
 font-weight:900;
-font-size:22px;
+letter-spacing:-1px;
 }
 .logo span{color:var(--accent);}
 
-button{
-background:linear-gradient(135deg,#e8c547,#f0d870);
+.btn{
+background:linear-gradient(135deg,var(--accent),var(--accent-soft));
 border:none;
-padding:6px 12px;
+padding:8px 16px;
+border-radius:8px;
 cursor:pointer;
-border-radius:6px;
+font-weight:500;
 }
 
 /* HERO */
 .hero{
-max-width:1300px;
-margin:50px auto;
-padding:0 20px;
+max-width:1200px;
+margin:80px auto 40px;
+padding:0 24px;
 }
 .hero h1{
-font-size:56px;
 font-family:'Playfair Display';
+font-size:64px;
+line-height:1.05;
+letter-spacing:-1px;
 }
-.hero p{color:var(--muted);}
-
-/* GRID */
-.grid{
-max-width:1300px;
-margin:auto;
-padding:0 20px;
-display:grid;
-grid-template-columns:2.2fr 1fr;
-gap:30px;
-}
-
-/* GLASS CARD */
-.card{
-background:var(--glass);
-border:1px solid var(--border);
-backdrop-filter:blur(10px);
-border-radius:10px;
-padding:18px;
-margin-bottom:16px;
-transition:.3s;
-}
-.card:hover{
-transform:translateY(-4px);
-box-shadow:0 10px 40px rgba(0,0,0,.5);
-}
-
-/* STORY */
-.story-title{
-font-family:'Playfair Display';
-font-size:20px;
-margin-bottom:6px;
-}
-.meta{
-font-size:12px;
+.hero p{
+margin-top:12px;
 color:var(--muted);
-}
-.price{
-color:var(--accent);
-margin-top:8px;
-font-family:'DM Mono';
-}
-
-/* INPUT */
-input,textarea{
-width:100%;
-margin-top:6px;
-padding:10px;
-background:#000;
-color:#fff;
-border:1px solid var(--border);
-border-radius:6px;
+font-size:16px;
 }
 
 /* TICKER */
 .ticker{
-overflow:hidden;
-white-space:nowrap;
 border-top:1px solid var(--border);
 border-bottom:1px solid var(--border);
-padding:10px 0;
-margin:20px 0;
+padding:12px 0;
+margin:30px 0;
+overflow:hidden;
 }
 .ticker span{
 display:inline-block;
 padding-left:100%;
-animation:scroll 20s linear infinite;
+animation:scroll 25s linear infinite;
 color:var(--accent);
+font-family:'DM Mono';
 }
 @keyframes scroll{
 0%{transform:translateX(0);}
 100%{transform:translateX(-100%);}
 }
 
+/* GRID */
+.grid{
+max-width:1300px;
+margin:auto;
+padding:0 24px;
+display:grid;
+grid-template-columns:2.3fr 1fr;
+gap:30px;
+}
+
+/* CARD */
+.card{
+background:var(--glass);
+border:1px solid var(--border);
+backdrop-filter:blur(14px);
+border-radius:14px;
+padding:20px;
+margin-bottom:18px;
+transition:all .35s ease;
+}
+.card:hover{
+transform:translateY(-6px);
+background:var(--glass2);
+box-shadow:0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* STORY */
+.story-title{
+font-family:'Playfair Display';
+font-size:22px;
+margin-bottom:6px;
+}
+.meta{
+font-size:12px;
+color:var(--muted);
+}
+.story-body{
+margin-top:8px;
+color:#ccc;
+}
+.price{
+margin-top:10px;
+font-family:'DM Mono';
+color:var(--accent);
+}
+
+/* INPUT */
+input,textarea{
+width:100%;
+margin-top:8px;
+padding:12px;
+background:#000;
+border:1px solid var(--border);
+border-radius:8px;
+color:#fff;
+}
+
+/* SIDEBAR */
+.side-title{
+font-size:14px;
+color:var(--muted);
+margin-bottom:6px;
+}
+
 /* SECTION */
 .section{
-max-width:1300px;
-margin:60px auto;
-padding:0 20px;
+max-width:1200px;
+margin:80px auto;
+padding:0 24px;
 }
 .section h2{
 font-family:'Playfair Display';
+font-size:28px;
 }
-.small{color:var(--muted);}
+.small{color:var(--muted);margin-top:8px;}
 
 /* FOOTER */
 footer{
-margin-top:80px;
-padding:20px;
+margin-top:100px;
+padding:30px;
 text-align:center;
 color:var(--muted);
 border-top:1px solid var(--border);
@@ -179,17 +201,17 @@ border-top:1px solid var(--border);
 <header>
 <div class="wrap">
 <div class="logo">TANDANG<span>.</span></div>
-<a href="https://x.com/tandangnews" target="_blank"><button>X</button></a>
+<a href="https://x.com/tandangnews" target="_blank"><button class="btn">Follow X</button></a>
 </div>
 </header>
 
 <div class="hero">
-<h1>Truth Has a Market Price.</h1>
-<p>Onchain journalism where narratives compete in an open economy.</p>
+<h1>The Market for Truth.</h1>
+<p>Where journalism is priced, not controlled.</p>
 </div>
 
 <div class="ticker">
-<span>🧠 AI News Market Live • Truth is Priced • Decentralized Media Layer • Web3 Journalism Rising</span>
+<span>🧠 Live AI Journalism • Decentralized Media Layer • Truth Competes • Onchain News Economy</span>
 </div>
 
 <div class="grid">
@@ -202,15 +224,28 @@ border-top:1px solid var(--border);
 <h3>Submit Story</h3>
 <input id="title" placeholder="Headline"/>
 <textarea id="content"></textarea>
-<button onclick="submitStory()">Publish</button>
+<button class="btn" onclick="submitStory()">Publish</button>
 </div>
 </div>
 
 <!-- SIDEBAR -->
 <div>
-<div class="card"><h3>Market</h3><div id="market">$120</div></div>
-<div class="card"><h3>Trending</h3><div id="trending"></div></div>
-<div class="card"><h3>Top Journalists</h3><div id="journalists"></div></div>
+
+<div class="card">
+<div class="side-title">AI Market</div>
+<div id="market">$120</div>
+</div>
+
+<div class="card">
+<div class="side-title">Trending</div>
+<div id="trending"></div>
+</div>
+
+<div class="card">
+<div class="side-title">Top Journalists</div>
+<div id="journalists"></div>
+</div>
+
 </div>
 
 </div>
@@ -219,7 +254,7 @@ border-top:1px solid var(--border);
 <div class="section">
 <h2>About</h2>
 <p class="small">
-TANDANG transforms journalism into a decentralized economic system where truth emerges through incentives.
+TANDANG is a decentralized journalism protocol where narratives compete economically, and truth emerges through incentives.
 </p>
 </div>
 
@@ -239,34 +274,30 @@ Aria Nakamoto • Leo Zhang • Mika Tanaka • Ravi Prasetya
 </div>
 
 <footer>
-© 2026 TANDANG — Onchain Journalism Protocol
+© 2026 TANDANG — Built for the future of media
 </footer>
 
 <script>
-
-/* DATA */
 let stories = JSON.parse(localStorage.getItem("stories")) || [
-{t:"AI Market Manipulation Exposed",c:"Leaked data reveals bias",a:"aria_01",p:320,s:80},
-{t:"Onchain Identity Debate",c:"Privacy vs accountability",a:"leo_88",p:210,s:60}
+{t:"AI Market Manipulation Exposed",c:"Leaked data reveals systemic bias.",a:"aria_01",p:320,s:80},
+{t:"Onchain Identity Debate",c:"Privacy vs accountability intensifies.",a:"leo_88",p:210,s:60}
 ];
 
 let journalists = JSON.parse(localStorage.getItem("journalists")) || {
 "aria_01":80,"leo_88":60
 };
 
-/* SCORE */
 function score(text){
-return Math.min(100,text.length/7 + Math.random()*15);
+return Math.min(100,text.length/6+Math.random()*12);
 }
 
-/* SUBMIT */
 function submitStory(){
 const t=document.getElementById("title").value;
 const c=document.getElementById("content").value;
 const a="user_"+Math.floor(Math.random()*999);
 
 const s=score(c);
-const p=Math.floor(100+s*2);
+const p=Math.floor(120+s*2);
 
 stories.unshift({t,c,a,p,s});
 journalists[a]=(journalists[a]||0)+s;
@@ -277,13 +308,12 @@ localStorage.setItem("journalists",JSON.stringify(journalists));
 render();
 }
 
-/* RENDER */
 function render(){
 document.getElementById("feed").innerHTML=stories.map(x=>`
 <div class="card">
 <div class="story-title">${x.t}</div>
 <div class="meta">${x.a}</div>
-<p>${x.c}</p>
+<div class="story-body">${x.c}</div>
 <div class="price">$${x.p}</div>
 </div>
 `).join("");
@@ -297,11 +327,9 @@ Object.entries(journalists).sort((a,b)=>b[1]-a[1]).slice(0,5)
 
 render();
 
-/* MARKET */
 setInterval(()=>{
 document.getElementById("market").innerText="$"+(100+Math.random()*40).toFixed(2);
 },2000);
-
 </script>
 
 </body>
