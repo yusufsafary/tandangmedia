@@ -49,9 +49,6 @@ main{max-width:1100px;margin:0 auto;padding:0 16px;}
 .ai-price-label{font-size:12px;color:var(--muted);}
 .ai-price-label strong{display:block;font-family:var(--font-mono);font-size:18px;color:var(--accent);font-weight:500;}
 
-/* ORYNTH BADGE */
-.orynth-badge{display:flex;justify-content:center;margin-bottom:16px;}
-
 /* ARTICLE GRID */
 .content-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:8px;overflow:hidden;margin-bottom:24px;}
 @media(min-width:700px){.content-grid{grid-template-columns:1fr 1fr;}}
@@ -71,8 +68,12 @@ footer a:hover{color:var(--accent2);}
 .bid-slider input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--accent);cursor:pointer;transition:all 0.2s;}
 .bid-slider input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.2);}
 
+/* ORYNTH BADGE */
+.orynth-badge{display:flex;justify-content:center;margin:24px 0;}
+
 /* MEDIA */
 @media(max-width:600px){.hero h1{font-size:26px;}.content-grid{grid-template-columns:1fr;}}
+@keyframes pulse{0%,100%{opacity:0.2;}50%{opacity:1;}}
 </style>
 </head>
 <body>
@@ -95,12 +96,6 @@ footer a:hover{color:var(--accent2);}
     <h1>Experience <em>Next-Level</em> Citizen Journalism</h1>
     <div class="hero-sub">A Web3 powered platform for journalists and readers. Track stories on-chain, bid for insights, and see AI-powered price analytics.</div>
   </section>
-
-  <div class="orynth-badge">
-    <a href="https://orynth.dev/projects/journalism-onchain" target="_blank" rel="noopener">
-      <img src="https://orynth.dev/api/badge/journalism-onchain?theme=light&style=default" alt="Featured on Orynth" width="260" height="80" />
-    </a>
-  </div>
 
   <div class="ai-price-display">
     <div class="ai-price-left">
@@ -150,6 +145,12 @@ footer a:hover{color:var(--accent2);}
     <h2>Privacy Policy</h2>
     <p>We value user privacy. All on-chain interactions are pseudonymous and no personal data is sold. Analytics data is aggregated for platform insights only.</p>
   </section>
+
+  <div class="orynth-badge">
+    <a href="https://orynth.dev/projects/journalism-onchain" target="_blank" rel="noopener">
+      <img src="https://orynth.dev/api/badge/journalism-onchain?theme=light&style=default" alt="Featured on Orynth" width="260" height="80" />
+    </a>
+  </div>
 </main>
 
 <footer>
@@ -158,7 +159,6 @@ footer a:hover{color:var(--accent2);}
 </footer>
 
 <script>
-// Bid slider interaction
 const slider = document.querySelector('.bid-slider input');
 const span = document.querySelector('.bid-slider span');
 slider.addEventListener('input',()=>{span.textContent=`🪙 Simulated Bid: ${slider.value}`;});
